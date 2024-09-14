@@ -9,7 +9,7 @@ function Nav() {
         <img src={logo} alt="soccer logo" />
         <a>Home</a>
         <a>Dashboard</a>
-        <a>login</a>
+        <a className="login">login</a>
       </nav>
     </>
   );
