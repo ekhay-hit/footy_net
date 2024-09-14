@@ -9,7 +9,7 @@ const db = require("./config/connection");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
 // sechemas requires
-// const { typeDefs, resolvers } = require("./sechmas");
+const { typeDefs, resolvers } = require("./schemas");
 
 // Port
 const PORT = process.env.PORT;
