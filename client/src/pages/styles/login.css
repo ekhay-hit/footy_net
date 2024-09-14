@@ -1,0 +1,46 @@
+.login-main {
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+  background-image: url("/images/Login-page.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.form {
+  margin-left: auto;
+  margin-right: 200px;
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 30%;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-weight: bold;
+  /* margin-top: 100px; */
+  box-shadow: 2px 2px 2px solid gray;
+
+  button {
+    width: 100px;
+    border-radius: 25px;
+    background-color: rgb(25, 25, 81);
+    color: white;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .form {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1400px) {
+  .form {
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+  }
+}
