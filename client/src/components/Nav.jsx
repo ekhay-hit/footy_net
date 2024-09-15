@@ -6,7 +6,9 @@ function Nav() {
   return (
     <>
       <nav className="nav">
-        <img src={logo} alt="soccer logo" />
+        <a>
+          <img src={logo} alt="soccer logo" />
+        </a>
         <a>Home</a>
         <a>Dashboard</a>
         <a className="login">login</a>
