@@ -6,10 +6,11 @@
   height: 80px;
   padding: 20px;
   color: white;
-  gap: 20px;
+  gap: 50px;
 
   a {
     text-decoration: none;
+    padding: 10px;
     color: white;
   }
 
@@ -20,4 +21,16 @@
     width: 35px;
     height: 35px;
   }
+}
+.nav a:hover {
+  background-color: rgb(180, 226, 43);
+  border-radius: 25px;
+  text-decoration: none;
+  text-transform: none;
+  color: black !important;
+}
+
+.login {
+  margin-left: auto;
+  margin-right: 20px;
 }
