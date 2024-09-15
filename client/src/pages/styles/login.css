@@ -28,6 +28,12 @@
     background-color: rgb(25, 25, 81);
     color: white;
   }
+
+  a {
+    text-decoration: none;
+    margin-left: auto;
+    color: brown;
+  }
 }
 
 @media screen and (max-width: 992px) {

@@ -1,18 +1,19 @@
 // requiring express to create server
 const express = require("express");
 const path = require("path");
-
-// connection to db config
-const db = require("./config/connection");
-
+const authMiddleware = require("./utils/auth");
 // graphql and appollo import
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
 // sechemas requires
 const { typeDefs, resolvers } = require("./schemas");
 
+// connection to db config
+const db = require("./config/connection");
+const { User } = require("./models/User");
+
 // Port
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 const server = new ApolloServer({
@@ -23,10 +24,10 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
-  app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
-  app.unsubscribe(
+  app.use(
     "/graphql",
     expressMiddleware(server, {
       context: authMiddleware,
