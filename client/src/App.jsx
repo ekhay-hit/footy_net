@@ -1,14 +1,20 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav.jsx";
-// import Login from "./pages/Login.jsx";
-import Signup from "./pages/Singup.jsx";
-import "./styles/App.css";
-// import { Outlet } from "react-router-dom";
 
+import "./styles/App.css";
+
+const client = new ApolloClient({
+  uri: "graphql",
+  cache: new InMemoryCache(),
+});
 function App() {
   return (
     <>
-      <Nav />
-      <Signup />
+      <ApolloProvider client={client}>
+        <Nav />
+        <Outlet />
+      </ApolloProvider>
     </>
   );
 }
