@@ -38,4 +38,5 @@
 .active {
   background-color: rgb(180, 226, 43);
   border-radius: 25px;
+  color: black !important;
 }
