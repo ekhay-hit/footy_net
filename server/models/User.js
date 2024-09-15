@@ -20,12 +20,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 6,
   },
-  //   games:[
-  // {
-  // type:Schema.Types.ObjectId,
-  // ref:"Game",
-  //   }
-  // ]
+  games: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Game",
+    },
+  ],
 });
 
 // Before create new user run pre to encrypt the password
