@@ -3,7 +3,7 @@ import "./styles/login.css";
 function Login() {
   return (
     <main className="login-main">
-      <form className="form form-control">
+      <form className="form-login form-control">
         <label>Username:</label>
         <input className="form-control" />
 

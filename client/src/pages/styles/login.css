@@ -7,7 +7,7 @@
   background-position: center;
 }
 
-.form {
+.form-login {
   margin-left: auto;
   margin-right: 200px;
   margin-top: 150px;
@@ -16,17 +16,18 @@
   width: 30%;
   height: 30%;
   gap: 10px;
-  background-color: rgba(207, 203, 203, 0.8);
-  color: black;
+  background-color: rgba(10, 9, 9, 0.8);
+  border-radius: 20px;
+  color: white;
   font-weight: bold;
   /* margin-top: 100px; */
-  box-shadow: 2px 2px 2px solid gray;
+  box-shadow: 2px 2px solid black;
 
   button {
     width: 150px;
     margin-top: 10px;
     border-radius: 25px;
-    background-color: rgb(25, 25, 81);
+    background-color: rgb(113, 113, 185);
     color: white;
   }
 }
