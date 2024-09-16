@@ -9,10 +9,13 @@ function Login() {
 
         <label>Password:</label>
         <input className="form-control"></input>
+        <div>
+          <button>Login</button>
+        </div>
 
-        <button>Login</button>
-
-        <Link to="/signup">Not registerd: Signup</Link>
+        <Link to="/signup" className="singup">
+          Not registerd: Signup
+        </Link>
       </form>
     </main>
   );
