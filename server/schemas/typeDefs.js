@@ -1,8 +1,14 @@
 const typeDefs = `
-type User{
+type User {
 _id:ID
 username:String!
 email:String!
+
+}
+
+type Auth{
+token:String
+user:User
 }
 
 # all get or read request here
