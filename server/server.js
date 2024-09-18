@@ -4,7 +4,7 @@ const path = require("path");
 require("dotenv").config();
 // connection to db config
 const db = require("./config/connection");
-// const authMiddleware = require("./utils/auth");
+const { authMiddleware } = require("./utils/auth");
 // graphql and appollo import
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -26,13 +26,13 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
   app.use(
     "/graphql",
     expressMiddleware(server, {
-      // context: authMiddleware,
+      context: authMiddleware,
     })
   );
 

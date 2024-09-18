@@ -1,6 +1,6 @@
 const { Query } = require("mongoose");
 const User = require("../models/User");
-const { singToken, AuthenticationError } = require("../utils/auth");
+const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     getUser: () => {
@@ -17,10 +17,10 @@ const resolvers = {
       // try create user
       try {
         const user = await User.create({ username, email, password });
-        // const token = singToken(user);
+        const token = signToken(user);
         // if success return token and user
-        // return { token, user };
-        return user;
+        return { token, user };
+        // return user;
       } catch (err) {
         throw new Error(`creating new user failed:${err.message}`);
       }
