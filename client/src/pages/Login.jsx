@@ -27,10 +27,10 @@ function Login(props) {
       const { data } = await login({
         variables: { ...formState },
       });
+      Navigate('/')
 
-      window.location.href = "/home";
     } catch (e) {
-      console.error(e);
+      console.error("failed to log in");
     }
 
     //clear form values
