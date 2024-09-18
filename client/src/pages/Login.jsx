@@ -47,7 +47,7 @@ function Login(props) {
         <input 
         className="form-control"
         name="username"
-        type="username"
+        type="text"
         value={formState.username}
         onChange={handleChange}
         
