@@ -1,8 +1,13 @@
 const typeDefs = `
-type User{
+type User {
 _id:ID
 username:String!
 email:String!
+}
+
+type Auth{
+token:String
+user:User
 }
 
 # all get or read request here
@@ -12,7 +17,7 @@ getUser(id:ID!):User
 
 # all mutation here
 type Mutation{
-createUser(username:String!, email:String!, password:String!):User
+createUser(username:String!, email:String!, password:String!):Auth
 }
 `;
 module.exports = typeDefs;

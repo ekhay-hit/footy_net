@@ -5,7 +5,7 @@ import Nav from "./components/Nav.jsx";
 import "./styles/App.css";
 
 const client = new ApolloClient({
-  uri: "graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 function App() {
