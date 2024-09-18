@@ -7,7 +7,7 @@ import "./styles/login.css";
 
 function Login(props) {
   const [formState, setFormState] = useState({ username: "", password: "" });
-  const [login, { error, data }] = useMutation(LOGIN_USER)
+  const [login, { error }] = useMutation(LOGIN_USER)
 
   //update state based on form input changes
   const handleChange = (event) => {
@@ -28,7 +28,7 @@ function Login(props) {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
+      window.location.href = "/home";
     } catch (e) {
       console.error(e);
     }
