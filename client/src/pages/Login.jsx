@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import { useNavigate } from 'react-router-dom';
 
 import "./styles/login.css";
 
 function Login(props) {
   const [formState, setFormState] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
   const [login, { error }] = useMutation(LOGIN_USER)
 
   //update state based on form input changes
@@ -28,7 +30,7 @@ function Login(props) {
         variables: { ...formState },
       });
       console.log(data.login);
-      Navigate('/')
+      navigate('/')
 
     } catch (e) {
       console.error("failed to log in");
