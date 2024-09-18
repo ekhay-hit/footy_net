@@ -27,6 +27,7 @@ function Login(props) {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log(data.login);
       Navigate('/')
 
     } catch (e) {
