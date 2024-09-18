@@ -4,7 +4,10 @@ const fieldsSchema = new Schema({
     location: {
         type: String,
         required: true,
-        unique: true,
+    },
+    fieldName: {
+        type: String,
+        required: true,
     },
     created_at: {
         type: Date,
