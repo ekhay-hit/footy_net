@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import { useNavigate } from 'react-router-dom';
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 import "./styles/login.css";
 
-function Login(props) {
+function Login() {
   const [formState, setFormState] = useState({ username: "", password: "" });
   const navigate = useNavigate();
-  const [login, { error }] = useMutation(LOGIN_USER)
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   //update state based on form input changes
   const handleChange = (event) => {
@@ -30,8 +30,7 @@ function Login(props) {
         variables: { ...formState },
       });
       console.log(data.login);
-      navigate('/')
-
+      navigate("/");
     } catch (e) {
       console.error("failed to log in");
     }
@@ -47,22 +46,21 @@ function Login(props) {
     <main className="login-main">
       <form className="form-login form-control" onSubmit={handleFormSubmit}>
         <label>Username:</label>
-        <input 
-        className="form-control"
-        name="username"
-        type="text"
-        value={formState.username}
-        onChange={handleChange}
-        
-         />
+        <input
+          className="form-control"
+          name="username"
+          type="text"
+          value={formState.username}
+          onChange={handleChange}
+        />
 
         <label>Password:</label>
-        <input 
-        className="form-control"
-        name="password"
-        type="password"
-        value={formState.password}
-        onChange={handleChange}
+        <input
+          className="form-control"
+          name="password"
+          type="password"
+          value={formState.password}
+          onChange={handleChange}
         />
         <div>
           <button>Login</button>
