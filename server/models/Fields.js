@@ -9,16 +9,12 @@ const fieldsSchema = new Schema({
         type: String,
         required: true,
     },
-    created_at: {
-        type: Date,
-        required: true,
-    },
-    games:[ 
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'Game',
-    }
-]
+//     games:[ 
+//     {
+//         type: Schema.Types.ObjectId,
+//         ref: 'Game',
+//     }
+// ]
 });
 
 const Fields = model("Fields", fieldsSchema);

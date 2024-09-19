@@ -14,8 +14,6 @@ type Fields {
 _id: ID
 location: String
 fieldName: String
-// created_at: Date
-games: Game
 }
 
 # all get or read request here
@@ -27,6 +25,7 @@ me:User
 type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 login(username: String!, password: String!): Auth
+addField(location: String!, fieldName: String!): Fields
 }
 `;
 module.exports = typeDefs;
