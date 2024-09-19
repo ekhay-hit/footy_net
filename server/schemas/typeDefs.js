@@ -10,6 +10,14 @@ token:String
 user:User
 }
 
+type Fields {
+_id: ID
+location: String
+fieldName: String
+// created_at: Date
+games: Game
+}
+
 # all get or read request here
 type Query{
 me:User

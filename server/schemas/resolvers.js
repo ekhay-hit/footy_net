@@ -1,5 +1,6 @@
 const { Query } = require("mongoose");
 const User = require("../models/User");
+const Field = require("../models/Fields");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
@@ -53,6 +54,15 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addField: async(_, { location, fieldName, created_at, games}) => {
+      try {
+      const field = await Field.create({ location, fieldName, created_at, games});
+
+      return { field };
+    } catch (err) {
+      throw new Error(`creating new field failed:${err.message}`); 
+    }
     },
   },
 };
