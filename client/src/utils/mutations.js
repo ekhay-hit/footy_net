@@ -29,3 +29,12 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_FIELD = gql`
+mutation addField($location: String!, $fieldName: String!) {
+  addField(location: $location, fieldName: $fieldName) {
+    _id
+    location
+    fieldName
+  }
+}`
