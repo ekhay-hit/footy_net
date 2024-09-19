@@ -12,7 +12,7 @@ user:User
 
 # all get or read request here
 type Query{
-getUser(id:ID!):User
+me:User
 }
 
 # all mutation here
