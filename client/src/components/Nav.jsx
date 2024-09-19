@@ -9,10 +9,7 @@ function Nav() {
   
   const activePage = useLocation().pathname;
 
-  const loggedIn = Auth.loggedIn();
-
-  const loggedOut = () => {
-    Auth.logout();
+  
   };
 
   return (
