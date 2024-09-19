@@ -21,7 +21,7 @@ class AuthService {
     }
 
     login(idToken) {
-        //Save
+        //saves user token to localStorage /reloads page for logged in status to take effect
         localStorage.setItem('id_token', idToken);
         window.location.assign('/');
 

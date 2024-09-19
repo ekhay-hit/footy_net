@@ -6,11 +6,16 @@ import logo from "../assets/images/logo.png";
 import Auth from '../utils/auth'
 
 function Nav() {
-  
+
   const activePage = useLocation().pathname;
 
+  const logout = (e) => {
+    e.preventDefault();
+    Auth.logout();
   
   };
+  
+  
 
   return (
     <>
@@ -29,13 +34,18 @@ function Nav() {
         >
           Dashboard
         </Link>
-      
-        <Link
-          to="/login"
-          className={activePage === "/login" ? "login active" : "login"}
-        >
-          login
-        </Link>
+        {Auth.loggedIn() ? (
+          <Link className="logout" onClick={logout}>
+            logout
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className={activePage === "/login" ? "login active" : "login"}
+          >
+            login
+          </Link>
+        )}
       </nav>
     </>
   );
