@@ -25,13 +25,14 @@ nav {
 }
 .section {
   display: flex;
-
+  flex-wrap: wrap;
   height: 100vh;
   margin-top: 100px;
   padding: 20px;
   width: 100%;
-  background-color: rgb(209, 126, 126);
+  /* background-color: rgb(209, 126, 126); */
   justify-content: center;
+  gap: 40px;
 }
 
 .sub-section {
@@ -48,10 +49,13 @@ nav {
 }
 .main-area {
   display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
   width: 70%;
   margin-top: 10px;
-  padding: 10px;
+  padding: 20px;
   height: 100vh;
+  gap: 60px;
   background-color: rgb(211, 149, 149);
   margin-left: auto;
 }
