@@ -1,6 +1,8 @@
 import "./styles/dashboard.css";
 import { useState } from "react";
 import Button from "../components/Button";
+import Field from "../components/Field";
+import Game from "../components/Game";
 function Dashboard() {
   const [showJoinedGames, setShowJoinedGames] = useState(true);
   const [showAddField, setShowAddField] = useState(false);
@@ -41,14 +43,24 @@ function Dashboard() {
         </div>
       )}
       {showAddField && (
-        <div className="section">
-          <h1>Here where I can add field</h1>
-        </div>
+        <section className="sub-section">
+          <div className="form-area">
+            <Field />
+          </div>
+          <div className="main-area">
+            <h1>Here will my field be rendered</h1>
+          </div>
+        </section>
       )}
       {showAddGames && (
-        <div className="section">
-          <h1>Here were we can add games</h1>
-        </div>
+        <section className="sub-section">
+          <div className="form-area">
+            <Game />
+          </div>
+          <div className="main-area">
+            <h1>Here will my games be rendered</h1>
+          </div>
+        </section>
       )}
     </main>
   );

@@ -17,11 +17,10 @@
   height: 40%;
   gap: 10px;
   border-radius: 20px;
-  /* background-color: rgba(207, 203, 203, 0.8); */
   background-color: rgba(10, 9, 9, 0.8);
   color: white;
   font-weight: bold;
-  /* margin-top: 100px; */
+
   box-shadow: 2px 2px 2px solid gray;
 
   button {
@@ -32,7 +31,7 @@
   }
 
   label {
-    padding-top: px;
+    padding-top: 10px;
     height: 10px;
   }
 }

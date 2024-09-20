@@ -33,3 +33,25 @@ nav {
   background-color: rgb(209, 126, 126);
   justify-content: center;
 }
+
+.sub-section {
+  display: flex;
+  width: 100%;
+  margin-top: 100px;
+}
+.form-area {
+  width: 30%;
+  /* height: 100vh; */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(193, 230, 230);
+}
+.main-area {
+  display: flex;
+  width: 70%;
+  margin-top: 10px;
+  padding: 10px;
+  height: 100vh;
+  background-color: rgb(211, 149, 149);
+  margin-left: auto;
+}
