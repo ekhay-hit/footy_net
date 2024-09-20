@@ -14,6 +14,7 @@ type Fields {
 _id: ID
 location: String
 fieldName: String
+image:String
 }
 
 # all get or read request here
