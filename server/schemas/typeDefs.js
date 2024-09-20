@@ -26,6 +26,7 @@ type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 login(username: String!, password: String!): Auth
 addField(location: String!, fieldName: String!): Fields
+# saveUser(user: UserInput!): User
 }
 `;
 module.exports = typeDefs;
