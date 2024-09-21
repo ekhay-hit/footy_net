@@ -40,6 +40,7 @@ const resolvers = {
     },
   },
   Mutation: {
+    // create user Mutation *****************************************************************
     createUser: async (_, { username, email, password }) => {
       // try create user
       try {
@@ -52,6 +53,7 @@ const resolvers = {
         throw new Error(`creating new user failed:${err.message}`);
       }
     },
+    // login Mutation *****************************************************************
     login: async (_, { username, password }) => {
       const user = await User.findOne({ username });
 
@@ -68,6 +70,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    // add a field mutation **************************************************
     addField: async (_, { location, fieldName, image }, { user }) => {
       if (!user) {
         throw new Error("Not authenticated");
@@ -86,6 +90,35 @@ const resolvers = {
         return field;
       } catch (err) {
         throw new Error(`creating new field failed:${err.message}`);
+      }
+    },
+
+    // Remove Field Mutation ******************************************************
+    async removeField(_, { fieldId }) {
+      try {
+        const delteField = await Field.findByIdAndDelete(fieldId);
+
+        // if no field found retun the mutationresponse with flase and message
+        if (!delteField) {
+          return {
+            success: false,
+            message: "Field not found",
+          };
+        }
+
+        // if succed return Mutationresponse with true and message
+        return {
+          success: true,
+          message: "Field deleted successfully ",
+        };
+
+        // else return mutationresponse with false and server issue
+      } catch (err) {
+        console.error("Error removing field", err);
+        return {
+          success: false,
+          message: "Failed to remove the field: server",
+        };
       }
     },
   },

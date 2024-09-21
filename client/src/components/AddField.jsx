@@ -31,9 +31,6 @@ function AddField() {
     event.preventDefault();
     const { fieldName, location, image } = fieldFormData;
 
-    // Log the values to confirm they are extracted correctly
-    console.log({ fieldName, location, image });
-
     try {
       // if there is an image convert it to base64 first
       let imageBase64 = null;

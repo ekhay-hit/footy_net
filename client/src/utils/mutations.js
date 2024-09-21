@@ -41,3 +41,12 @@ export const ADD_FIELD = gql`
     }
   }
 `;
+
+export const REMOVE_FIELD = gql`
+  mutation removeField($fieldId: ID!) {
+    removeField(fieldId: $fieldId) {
+      success
+      message
+    }
+  }
+`;
