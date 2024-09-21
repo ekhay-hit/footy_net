@@ -2,11 +2,17 @@ import { Link, useLocation } from "react-router-dom";
 import "./styles/nav.css";
 import logo from "../assets/images/logo.png";
 // import { Link, useLocation } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
 
 import Auth from "../utils/auth";
 
 function Nav() {
   const activePage = useLocation().pathname;
+
+  const { loading, data } = useQuery(GET_ME);
+
+  const username = data?.me.username;
 
   const logout = (e) => {
     e.preventDefault();
@@ -26,7 +32,7 @@ function Nav() {
 
         {Auth.loggedIn() && (
           <>
-            {console.log(Auth.getUser().username)}
+            {console.log(username)}
             <Link
               to="/dashboard"
               className={activePage === "/dashboard" && "active"}
@@ -37,7 +43,7 @@ function Nav() {
         )}
         {Auth.loggedIn() ? (
           <Link className="logout" onClick={logout}>
-            logout : {Auth.getUser().username}
+            logout : {username}
           </Link>
         ) : (
           <Link
