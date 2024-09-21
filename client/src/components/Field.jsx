@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import("../components/styles/field.css");
-function Field({ image }) {
+function Field({ field }) {
   return (
     <div className="field-card">
-      <img src={image} alt="field image" />
-      <h2>Winter Garden</h2>
-      <span>2343 Winter Garder, Orlando Florida</span>
+      <img src={field.image} alt="field image" />
+      <h4>{field.fieldName}</h4>
+      <span>{field.location}</span>
       <button className="remove_field">Remove Field</button>
     </div>
   );

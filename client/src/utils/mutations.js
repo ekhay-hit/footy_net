@@ -37,6 +37,7 @@ export const ADD_FIELD = gql`
       location
       fieldName
       image
+      userId
     }
   }
 `;

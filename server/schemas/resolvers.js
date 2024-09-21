@@ -25,6 +25,19 @@ const resolvers = {
         throw new Error("server erorr: failed to get the user");
       }
     },
+    // find field by user id
+
+    fieldsByUser: async (parent, _, { user }) => {
+      if (!user) {
+        throw new Error("not authenticated");
+      }
+      try {
+        const fields = await Field.find({ userId: user._id });
+        return fields;
+      } catch (err) {
+        throw new Error("Server Error: Failed to fetch fields");
+      }
+    },
   },
   Mutation: {
     createUser: async (_, { username, email, password }) => {
@@ -55,9 +68,18 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addField: async (_, { location, fieldName, image }) => {
+    addField: async (_, { location, fieldName, image }, { user }) => {
+      if (!user) {
+        throw new Error("Not authenticated");
+      }
+
       try {
-        const field = await Field.create({ location, fieldName, image });
+        const field = await Field.create({
+          location,
+          fieldName,
+          image,
+          userId: user._id,
+        });
         if (!field) {
           throw new Error(`failed to create new field`);
         }

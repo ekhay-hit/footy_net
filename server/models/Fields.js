@@ -8,9 +8,14 @@ const fieldsSchema = new Schema({
   fieldName: {
     type: String,
     required: true,
+    unique: true,
   },
   image: {
     type: String,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   //     games:[
   //     {
