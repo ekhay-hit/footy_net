@@ -8,6 +8,7 @@ const fieldsSchema = new Schema({
   fieldName: {
     type: String,
     required: true,
+    unique: true,
   },
   image: {
     type: String,

@@ -1,4 +1,4 @@
-import gql from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const GET_ME = gql`
   query me {
@@ -6,6 +6,18 @@ export const GET_ME = gql`
       _id
       username
       email
+    }
+  }
+`;
+
+export const FIELDS_BY_USER = gql`
+  query fieldsByUser {
+    fieldsByUser {
+      _id
+      location
+      fieldName
+      image
+      userId
     }
   }
 `;

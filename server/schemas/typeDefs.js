@@ -15,11 +15,13 @@ _id: ID!
 location: String!
 fieldName: String!
 image:String!
+userId: ID!
 }
 
 # all get or read request here
 type Query{
 me:User
+fieldsByUser:[Fields!]!
 }
 
 # all mutation here
