@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../components/styles/addField.css";
 import { useMutation } from "@apollo/client";
 import { ADD_FIELD } from "../utils/mutations";
+import { FIELDS_BY_USER } from "../utils/queries";
 
 function AddField() {
   // declairing state for add field input
@@ -12,7 +13,10 @@ function AddField() {
   });
 
   // add muations here
-  const [addField, { error }] = useMutation(ADD_FIELD);
+  const [addField, { error }] = useMutation(ADD_FIELD, {
+    refetchQueries: [{ query: FIELDS_BY_USER }], // since new field add we need to refresh fields_by_user to get new field
+    awaitRefetchQueries: true, // Wait for the refetch to complete before continuing
+  });
   // handel add field input data
   const handleAddFieldInput = (event) => {
     const { name, value } = event.target;
