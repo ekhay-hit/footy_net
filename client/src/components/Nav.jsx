@@ -3,19 +3,15 @@ import "./styles/nav.css";
 import logo from "../assets/images/logo.png";
 // import { Link, useLocation } from "react-router-dom";
 
-import Auth from '../utils/auth'
+import Auth from "../utils/auth";
 
 function Nav() {
-
   const activePage = useLocation().pathname;
 
   const logout = (e) => {
     e.preventDefault();
     Auth.logout();
-  
   };
-  
-  
 
   return (
     <>
@@ -28,12 +24,14 @@ function Nav() {
           Home
         </Link>
 
-        <Link
-          to="/dashboard"
-          className={activePage === "/dashboard" && "active"}
-        >
-          Dashboard
-        </Link>
+        {Auth.loggedIn() && (
+          <Link
+            to="/dashboard"
+            className={activePage === "/dashboard" && "active"}
+          >
+            Dashboard
+          </Link>
+        )}
         {Auth.loggedIn() ? (
           <Link className="logout" onClick={logout}>
             logout
