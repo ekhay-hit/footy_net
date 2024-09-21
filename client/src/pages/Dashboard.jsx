@@ -20,7 +20,7 @@ function Dashboard() {
 
   // function to handle states
   function showJoinedGameSection() {
-    setShowJoinedGames((value) => !value);
+    setShowJoinedGames(true);
     setShowAddField(false);
     setShowAddGames(false);
   }
