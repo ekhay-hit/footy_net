@@ -31,7 +31,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_FIELD = gql`
-  mutation addField($location: String!, $fieldName: String!, $image: String) {
+  mutation addField($location: String!, $fieldName: String!, $image: String!) {
     addField(location: $location, fieldName: $fieldName, image: $image) {
       _id
       location
