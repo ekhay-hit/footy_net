@@ -12,6 +12,10 @@ const fieldsSchema = new Schema({
   image: {
     type: String,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   //     games:[
   //     {
   //         type: Schema.Types.ObjectId,
