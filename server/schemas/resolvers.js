@@ -55,16 +55,16 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addField: async(_, { location, fieldName}) => {
+    addField: async (_, { location, fieldName, image }) => {
       try {
-      const field = await Field.create({ location, fieldName});
-      if( !field ) {
-        throw new Error(`failed to create new field`);
+        const field = await Field.create({ location, fieldName, image });
+        if (!field) {
+          throw new Error(`failed to create new field`);
+        }
+        return field;
+      } catch (err) {
+        throw new Error(`creating new field failed:${err.message}`);
       }
-      return field
-    } catch (err) {
-      throw new Error(`creating new field failed:${err.message}`); 
-    }
     },
   },
 };

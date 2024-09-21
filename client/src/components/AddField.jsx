@@ -25,17 +25,30 @@ function AddField() {
   // handle submit form
   const handelSubmitForm = async (event) => {
     event.preventDefault();
-    // append those data from the input to formField
-    const formData = new FormData();
 
-    formData.append("fieldName", fieldFormData.fieldName);
-    formData.append("location", fieldFormData.location);
-    formData.append("image", fieldFormData.image);
+    const { fieldName, location, image } = fieldFormData;
+
+    // Log the values to confirm they are extracted correctly
+    console.log({ fieldName, location, image });
 
     try {
-      const { data } = await addField({ variables: formData });
+      // if there is an image convert it to base64 first
+      let imageBase64 = null;
+      if (image) {
+        imageBase64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+          reader.readAsDataURL(image);
+        });
+      }
+      const { data } = await addField({
+        variables: { fieldName, location, image: imageBase64 },
+      });
+      console.log("Added the field successfully ");
     } catch (err) {
-      console.log("failed to add user");
+      console.log("failed to add field");
+      console.error(err);
     }
   };
 

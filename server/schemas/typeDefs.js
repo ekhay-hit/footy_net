@@ -11,9 +11,10 @@ user:User
 }
 
 type Fields {
-_id: ID
-location: String
-fieldName: String
+_id: ID!
+location: String!
+fieldName: String!
+image:String!
 }
 
 # all get or read request here
@@ -25,7 +26,7 @@ me:User
 type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 login(username: String!, password: String!): Auth
-addField(location: String!, fieldName: String!): Fields
+addField(location: String!, fieldName: String!, image:String!): Fields
 # saveUser(user: UserInput!): User
 }
 `;
