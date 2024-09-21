@@ -25,6 +25,7 @@ function AddField() {
   // handle submit form
   const handelSubmitForm = async (event) => {
     event.preventDefault();
+
     const { fieldName, location, image } = fieldFormData;
 
     // Log the values to confirm they are extracted correctly
