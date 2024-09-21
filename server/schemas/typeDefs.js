@@ -1,4 +1,7 @@
-const typeDefs = `
+
+const typeDefs = `#graphql
+scalar Date
+
 type User {
 _id:ID
 username:String!
@@ -10,15 +13,24 @@ token:String
 user:User
 }
 
-# all get or read request here
+type Game{
+fieldname: String
+gameDate: Date
+startTime: String
+Capacity: String
+endTime: String
+}
+
+
 type Query{
 me:User
 }
 
-# all mutation here
 type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 login(username: String!, password: String!): Auth
+game(fieldName: String!, gameDate: Date, startTime: String!, capacity: String!, endTime: String!) : Game
 }
 `;
 module.exports = typeDefs;
+

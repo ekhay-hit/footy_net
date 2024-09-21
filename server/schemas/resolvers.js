@@ -1,7 +1,9 @@
-const { Query } = require("mongoose");
 const User = require("../models/User");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const dateScalar = require("../utils/dateScalar");
+
 const resolvers = {
+  Date: dateScalar,
   Query: {
     // me query to get the user that is loggedIn **********************
     me: async (parent, _, { user }) => {
@@ -54,7 +56,13 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+  // AP mutation: games
+    // game: async (_, { fieldName, gameDate, startTime, capacity, endTime }) => {
+
+    // };
   },
 };
+
 
 module.exports = resolvers;
