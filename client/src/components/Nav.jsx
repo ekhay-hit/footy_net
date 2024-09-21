@@ -25,16 +25,19 @@ function Nav() {
         </Link>
 
         {Auth.loggedIn() && (
-          <Link
-            to="/dashboard"
-            className={activePage === "/dashboard" && "active"}
-          >
-            Dashboard
-          </Link>
+          <>
+            {console.log(Auth.getUser().username)}
+            <Link
+              to="/dashboard"
+              className={activePage === "/dashboard" && "active"}
+            >
+              Dashboard
+            </Link>
+          </>
         )}
         {Auth.loggedIn() ? (
           <Link className="logout" onClick={logout}>
-            logout
+            logout : {Auth.getUser().username}
           </Link>
         ) : (
           <Link

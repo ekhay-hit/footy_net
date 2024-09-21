@@ -6,7 +6,9 @@ import AddGame from "../components/AddGame";
 import Game from "../components/Game";
 import Field from "../components/Field";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { FIELDS_BY_USER } from "../utils/queries";
+import { REMOVE_FIELD } from "../utils/mutations";
 
 // import images for field
 import field1 from "../assets/images/field1.jpeg";
@@ -37,14 +39,31 @@ function Dashboard() {
     setShowJoinedGames(false);
   }
 
-  // section for queries and mutation
+  // section for queries
 
   const {
     loading: loadingFields,
     error: errorField,
     data: fieldsData,
   } = useQuery(FIELDS_BY_USER);
-  console.log(fieldsData);
+
+  // SECTION FOR MUTATION and its funtions
+
+  const [removeField, { error }] = useMutation(REMOVE_FIELD, {
+    refetchQueries: [{ query: FIELDS_BY_USER }], // REFETCH FIELDS
+  });
+
+  // function to handle remove field
+  const handelRemoveField = async (fieldId) => {
+    console.log("the id of the field clicked is");
+    console.log(fieldId);
+    try {
+      await removeField({ variables: { fieldId } });
+    } catch (error) {
+      console.log("Failed to delete the field");
+    }
+  };
+
   return (
     <main className="dash-main">
       <nav>
@@ -77,7 +96,11 @@ function Dashboard() {
               <p>... Loading your field</p>
             ) : (
               fieldsData?.fieldsByUser?.map((field) => (
-                <Field key={field.id} field={field} />
+                <Field
+                  key={field._id}
+                  field={field}
+                  onRemove={() => handelRemoveField(field._id)}
+                />
               ))
             )}
           </div>
