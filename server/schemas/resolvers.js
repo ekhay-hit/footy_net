@@ -58,13 +58,13 @@ const resolvers = {
       const user = await User.findOne({ username });
 
       if (!user) {
-        throw AuthenticationError;
+        throw new Error('Could not authenticate user');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw AuthenticationError;
+        throw new Error('Coult not authenticate user');
       }
 
       const token = signToken(user);
