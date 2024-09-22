@@ -6,7 +6,7 @@ import { CREATE_USER, UPDATE_USER } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 function Signup() {
   const [showSignup, setShowSignup] = useState(true);
-  const [showUpdateUser, setUpdateUser] = useState(false);
+  const [showUpdateUser, setUpdateUser] = useState(true);
   // declairing state for signup input
   const [userFormData, setUserFormData] = useState({
     username: "",
@@ -110,11 +110,7 @@ function Signup() {
               onChange={handleSignupInput}
               className="form-control"
             ></input>
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+            {error && <div className="error">{error.message}</div>}
             <button>Signup</button>
           </form>
         )}
