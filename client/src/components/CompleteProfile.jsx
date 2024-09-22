@@ -4,7 +4,7 @@ function CompleteProfile({ setAvatar, onUpload, onSkip }) {
   return (
     <form className="about-me ">
       <h3>Let's complete your profile</h3>
-      <label>Upload a photo to your profile:</label>
+      <label>Upload or update your profile photo:</label>
       <input
         type="file"
         name="avatar"
