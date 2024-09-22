@@ -1,8 +1,10 @@
-const { Query } = require("mongoose");
 const User = require("../models/User");
 const Field = require("../models/Fields");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const dateScalar = require("../utils/dateScalar");
+
 const resolvers = {
+  Date: dateScalar,
   Query: {
     // me query to get the user that is loggedIn **********************
     me: async (parent, _, { user }) => {
@@ -71,6 +73,29 @@ const resolvers = {
       return { token, user };
     },
 
+  // AP mutation: Add a game mutation
+    game: async (_, { fieldName, gameDate, startTime, capacity, endTime }, {owner}) => {
+      if (!owner) {
+        throw new Error ("Not An Owner");
+      }
+
+      try {
+        const game = await Game.create({
+          fieldName,
+          gameDate,
+          startTime,
+          capacity,
+          endTime,
+          ownerId: owner._id,
+        });
+        if (!game) {
+          throw new Error (`Failed to created new game.`);
+        }
+        return game;
+      } catch (err) {
+        throw new Error (`Creating new game failed:${err.message}`);
+      }
+    },
     // add a field mutation **************************************************
     addField: async (_, { location, fieldName, image }, { user }) => {
       if (!user) {
@@ -143,5 +168,6 @@ const resolvers = {
     },
   },
 };
+
 
 module.exports = resolvers;

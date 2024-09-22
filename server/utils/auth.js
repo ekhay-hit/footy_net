@@ -26,7 +26,6 @@ module.exports = {
       req.user = data;
     } catch {
       console.log("Invalid token");
-      throw module.exports.AuthenticatorError;
     }
     return req;
   },
