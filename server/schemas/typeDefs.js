@@ -3,6 +3,7 @@ type User {
 _id:ID
 username:String!
 email:String!
+avatar:String
 }
 
 type Auth{
@@ -43,6 +44,7 @@ addField(location: String!, fieldName: String!, image:String!): Fields
 
 removeField(fieldId:ID!): MutationResponse
 
+updateUser(avatar:String!):Auth
 
 # saveUser(user: UserInput!): User
 }
