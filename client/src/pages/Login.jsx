@@ -31,10 +31,9 @@ function Login() {
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log(data.login);
-      navigate("/");
 
       Auth.login(data.login.token);
+      navigate("/");
     } catch (e) {
       console.error("failed to log in");
     }

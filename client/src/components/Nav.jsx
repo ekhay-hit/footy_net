@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./styles/nav.css";
 import logo from "../assets/images/logo.png";
+import logo1 from "../assets/images/logo1.png";
 // import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
@@ -24,13 +25,18 @@ function Nav() {
     <>
       <nav className="nav">
         {/* if user has a vatar uplaoded use it if not do the else default one */}
-        <Link to="/">
-          {avatar ? (
-            <img src={avatar} alt="user logo" />
+        <Link to="/updateProfile">
+          {Auth.loggedIn() ? (
+            avatar ? (
+              <img src={avatar} alt="user logo" />
+            ) : (
+              <img src={logo} alt="user logo" />
+            )
           ) : (
-            <img src={logo} alt="user logo" />
+            <img src={logo1} alt="user logo" />
           )}
-          Welcome {username}
+
+          {Auth.loggedIn() && ` Welcome ${username}`}
         </Link>
 
         <Link to="/" className={activePage === "/" ? "active item" : "item"}>
