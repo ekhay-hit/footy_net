@@ -62,4 +62,3 @@ updateUser(avatar:String!):Auth
 }
 `;
 module.exports = typeDefs;
-
