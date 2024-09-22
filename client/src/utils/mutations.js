@@ -50,3 +50,16 @@ export const REMOVE_FIELD = gql`
     }
   }
 `;
+export const UPDATE_USER = gql`
+  mutation updateUser($avatar: String!) {
+    updateUser(avatar: $avatar) {
+      token
+      user {
+        _id
+        username
+        email
+        avatar
+      }
+    }
+  }
+`;

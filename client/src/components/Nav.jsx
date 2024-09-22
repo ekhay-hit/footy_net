@@ -2,8 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import "./styles/nav.css";
 import logo from "../assets/images/logo.png";
 // import { Link, useLocation } from "react-router-dom";
-import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
@@ -13,6 +13,7 @@ function Nav() {
   const { loading, data } = useQuery(GET_ME);
 
   const username = data?.me.username;
+  const avatar = data?.me?.avatar;
 
   const logout = (e) => {
     e.preventDefault();
@@ -22,11 +23,17 @@ function Nav() {
   return (
     <>
       <nav className="nav">
+        {/* if user has a vatar uplaoded use it if not do the else default one */}
         <Link to="/">
-          <img src={logo} alt="soccer logo" />
+          {avatar ? (
+            <img src={avatar} alt="user logo" />
+          ) : (
+            <img src={logo} alt="user logo" />
+          )}
+          Welcome {username}
         </Link>
 
-        <Link to="/" className={activePage === "/" && "active"}>
+        <Link to="/" className={activePage === "/" ? "active item" : "item"}>
           Home
         </Link>
 
@@ -35,7 +42,7 @@ function Nav() {
             {console.log(username)}
             <Link
               to="/dashboard"
-              className={activePage === "/dashboard" && "active"}
+              className={activePage === "/dashboard" ? "active item" : "item"}
             >
               Dashboard
             </Link>
@@ -43,7 +50,7 @@ function Nav() {
         )}
         {Auth.loggedIn() ? (
           <Link className="logout" onClick={logout}>
-            logout : {username}
+            logout
           </Link>
         ) : (
           <Link
