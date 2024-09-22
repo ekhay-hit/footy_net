@@ -14,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 30%;
-  height: 30%;
+  height: 40%;
   gap: 10px;
   background-color: rgba(10, 9, 9, 0.8);
   border-radius: 20px;
@@ -32,7 +32,13 @@
   }
 }
 
-.singup {
+.error {
+  color: red;
+  width: 100%;
+  padding: 10px;
+}
+
+.signup {
   text-decoration: none;
   margin-left: auto;
   color: brown;

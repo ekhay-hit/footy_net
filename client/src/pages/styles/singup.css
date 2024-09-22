@@ -32,7 +32,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 30%;
-  height: 40%;
+  height: 50%;
   gap: 10px;
   border-radius: 20px;
   background-color: rgba(10, 9, 9, 0.8);
@@ -52,6 +52,12 @@
     padding-top: 10px;
     height: 10px;
   }
+}
+
+.error {
+  color: red;
+  width: 100%;
+  padding: 10px;
 }
 
 @media screen and (max-width: 992px) {

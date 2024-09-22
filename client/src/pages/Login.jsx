@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 import "./styles/login.css";
 
@@ -32,8 +32,8 @@ function Login() {
         variables: { ...formState },
       });
       console.log(data.login);
-      navigate('/');
-      
+      navigate("/");
+
       Auth.login(data.login.token);
     } catch (e) {
       console.error("failed to log in");
@@ -66,6 +66,7 @@ function Login() {
           value={formState.password}
           onChange={handleChange}
         />
+        {error && <div className="error">{error.message}</div>}
         <div>
           <button>Login</button>
         </div>
