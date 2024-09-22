@@ -74,9 +74,9 @@ const resolvers = {
     },
 
   // AP mutation: Add a game mutation
-    game: async (_, { fieldName, gameDate, startTime, capacity, endTime }, {owner}) => {
-      if (!owner) {
-        throw new Error ("Not An Owner");
+    game: async (_, { fieldName, gameDate, startTime, capacity, endTime }, {user}) => {
+      if (!user) {
+        throw new Error ("Not authenticated");
       }
 
       try {
@@ -86,7 +86,9 @@ const resolvers = {
           startTime,
           capacity,
           endTime,
-          ownerId: owner._id,
+          userId: user._id,
+          player,
+          fieldId,
         });
         if (!game) {
           throw new Error (`Failed to created new game.`);
