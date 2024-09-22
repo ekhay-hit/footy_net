@@ -50,7 +50,7 @@ type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 
 login(username: String!, password: String!): Auth
-game(fieldName: String!, gameDate: Date, startTime: String!, capacity: String!, endTime: String!) : Game
+game(fieldName: String!, gameDate: Date, startTime: String!, capacity: String!, endTime: String!, userId: ID, player: String!, fieldId: ID,) : Game
 
 addField(location: String!, fieldName: String!, image:String!): Fields
 
@@ -62,4 +62,3 @@ updateUser(avatar:String!):Auth
 }
 `;
 module.exports = typeDefs;
-

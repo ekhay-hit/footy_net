@@ -21,6 +21,15 @@ const gameSchema = new Schema({
         type: String,
         required: true,
    },
+   userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  player: [User],
+  fieldId: {
+    type: Schema.Types.ObjectId,
+    ref: "Field",
+  },
 },
 );
 
