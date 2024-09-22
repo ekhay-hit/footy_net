@@ -1,7 +1,9 @@
+
+  require("dotenv").config();
+
 // requiring express to create server
 const express = require("express");
 const path = require("path");
-require("dotenv").config();
 // connection to db config
 const db = require("./config/connection");
 const { authMiddleware } = require("./utils/auth");

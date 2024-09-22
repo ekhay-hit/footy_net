@@ -29,3 +29,24 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_FIELD = gql`
+  mutation addField($location: String!, $fieldName: String!, $image: String!) {
+    addField(location: $location, fieldName: $fieldName, image: $image) {
+      _id
+      location
+      fieldName
+      image
+      userId
+    }
+  }
+`;
+
+export const REMOVE_FIELD = gql`
+  mutation removeField($fieldId: ID!) {
+    removeField(fieldId: $fieldId) {
+      success
+      message
+    }
+  }
+`;
