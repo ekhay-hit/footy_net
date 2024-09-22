@@ -14,6 +14,7 @@ function AddGame() {
   });
 
   // add muations here
+  
   //   const [addGame, { error }] = useMutation(ADD_GAME);
   // handel add game input data
   const handleSignupInput = (event) => {

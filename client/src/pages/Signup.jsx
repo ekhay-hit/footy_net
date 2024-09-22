@@ -110,6 +110,11 @@ function Signup() {
               onChange={handleSignupInput}
               className="form-control"
             ></input>
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
             <button>Signup</button>
           </form>
         )}
