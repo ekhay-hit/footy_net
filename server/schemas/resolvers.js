@@ -121,6 +121,26 @@ const resolvers = {
         };
       }
     },
+
+    updateUser: async (_, { avatar }, { user }) => {
+      if (!user) {
+        throw new Error("You are not authenticated");
+      }
+
+      try {
+        const updateUser = await User.findByIdAndUpdate(
+          user._id,
+          { avatar: avatar },
+          { new: true }
+        );
+        if (!updateUser) {
+          throw new Error("Failed to update user");
+        }
+        return updateUser;
+      } catch (error) {
+        console.error("failed to update user");
+      }
+    },
   },
 };
 

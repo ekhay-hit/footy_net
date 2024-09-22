@@ -1,10 +1,28 @@
 .signup-main {
+  display: flex;
+  justify-self: center;
   padding: 5px;
   height: 100vh;
   width: 100%;
   background-image: url("/images/signup.jpg");
   background-size: cover;
   background-position: center;
+}
+.complete-profile {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-left: 400px;
+  background-color: rgba(10, 9, 9, 0.8);
+  margin-top: 150px;
+  color: white;
+  gap: 10px;
+
+  h3 {
+    color: yellow;
+    text-align: center;
+  }
 }
 
 .form {
