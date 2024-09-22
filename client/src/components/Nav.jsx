@@ -49,13 +49,15 @@ function Nav() {
           </>
         )}
         {Auth.loggedIn() ? (
-          <Link className="logout" onClick={logout}>
+          <Link className="logout item" onClick={logout}>
             logout
           </Link>
         ) : (
           <Link
             to="/login"
-            className={activePage === "/login" ? "login active" : "login"}
+            className={
+              activePage === "/login item" ? "login active" : "login item"
+            }
           >
             login
           </Link>
