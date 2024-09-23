@@ -1,4 +1,3 @@
-
 const typeDefs = `#graphql
 scalar Date
 
@@ -15,11 +14,14 @@ user:User
 }
 
 type Game{
-fieldname: String
-gameDate: Date
-startTime: String
-Capacity: String
-endTime: String
+gameDate: Date!
+startTime: String!
+capacity: Int!
+endTime: String!
+isRecurring:Boolean
+players:[User]
+userId:ID!
+fieldId:ID!
 }
 
 
@@ -50,7 +52,8 @@ type Mutation{
 createUser(username:String!, email:String!, password:String!):Auth
 
 login(username: String!, password: String!): Auth
-game(fieldName: String!, gameDate: Date, startTime: String!, capacity: String!, endTime: String!, userId: ID, player: String!, fieldId: ID,) : Game
+
+createGame(fieldName: String!, gameDate: Date, startTime: String!, capacity:Int!, endTime: String!, isRecurring:Boolean!) : Game
 
 addField(location: String!, fieldName: String!, image:String!): Fields
 

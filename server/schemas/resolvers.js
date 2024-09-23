@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Field = require("../models/Fields");
+const Game = require("../models/Game");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const dateScalar = require("../utils/dateScalar");
 
@@ -60,42 +61,71 @@ const resolvers = {
       const user = await User.findOne({ username });
 
       if (!user) {
-        throw new Error('Could not authenticate user');
+        throw new Error("Could not authenticate user");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new Error('Coult not authenticate user');
+        throw new Error("Coult not authenticate user");
       }
 
       const token = signToken(user);
       return { token, user };
     },
 
-  // AP mutation: Add a game mutation
-    game: async (_, { fieldName, gameDate, startTime, capacity, endTime }, {user}) => {
+    // AP mutation: Add a game mutation
+    createGame: async (
+      _,
+      { fieldName, gameDate, startTime, capacity, endTime, isRecurring },
+      { user }
+    ) => {
       if (!user) {
-        throw new Error ("Not authenticated");
+        throw new Error("Not authenticated");
       }
 
       try {
+        // search for the field using its name and get the id of the field
+        const field = await Field.findOne({ fieldName });
+        if (!field) {
+          throw new Error("Field with name provided not found");
+        }
+
+        const fieldId = field._id;
+
         const game = await Game.create({
-          fieldName,
           gameDate,
           startTime,
           capacity,
           endTime,
           userId: user._id,
-          player,
+          isRecurring,
           fieldId,
         });
         if (!game) {
-          throw new Error (`Failed to created new game.`);
+          throw new Error(`Failed to created new game.`);
+        }
+
+        // If game is recurring, create additional entries for the next 30 days
+        if (isRecurring) {
+          const date = new Date(gameDate);
+          for (let i = 1; i <= 30; i++) {
+            const nextDate = new Date(date);
+            nextDate.setDate(date.getDate() + i);
+            await Game.create({
+              capacity,
+              startTime,
+              endTime,
+              gameDate: nextDate.toISOString(),
+              isRecurring: true,
+              fieldId,
+              userId: user._id,
+            });
+          }
         }
         return game;
       } catch (err) {
-        throw new Error (`Creating new game failed:${err.message}`);
+        throw new Error(`Creating new game failed:${err.message}`);
       }
     },
     // add a field mutation **************************************************
@@ -170,6 +200,5 @@ const resolvers = {
     },
   },
 };
-
 
 module.exports = resolvers;
