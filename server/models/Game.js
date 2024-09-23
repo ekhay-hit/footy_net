@@ -1,37 +1,38 @@
+const User = require("./User");
 const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
-    fieldName: {
-        type: String,
-        required: true,
-    },
-    gameDate: {
-       type: Date,
-        required: true,
-    },
-    startTime: {
-        type: String,
-        required: true,
-    },
-   capacity: {
-        type: String,
-        required: true,
-   },
-   endTime: {
-        type: String,
-        required: true,
-   },
-   userId: {
+  gameDate: {
+    type: Date,
+    required: true,
+  },
+  startTime: {
+    type: String,
+    required: true,
+  },
+  capacity: {
+    type: Number,
+    required: true,
+  },
+  endTime: {
+    type: String,
+    required: true,
+  },
+  isRecurring: {
+    type: Boolean,
+  },
+  userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  player: [User],
+
+  players: [{ type: Schema.Types.ObjectId, ref: "User" }],
+
   fieldId: {
     type: Schema.Types.ObjectId,
     ref: "Field",
   },
-},
-);
+});
 
 const Game = model("Game", gameSchema);
 

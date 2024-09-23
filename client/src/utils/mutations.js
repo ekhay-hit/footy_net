@@ -63,3 +63,31 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const CREATE_GAME = gql`
+  mutation CreateGame(
+    $fieldName: String!
+    $startTime: String!
+    $capacity: Int!
+    $endTime: String!
+    $isRecurring: Boolean!
+    $gameDate: Date
+  ) {
+    createGame(
+      fieldName: $fieldName
+      startTime: $startTime
+      capacity: $capacity
+      endTime: $endTime
+      isRecurring: $isRecurring
+      gameDate: $gameDate
+    ) {
+      gameDate
+      startTime
+      capacity
+      endTime
+      isRecurring
+      userId
+      fieldId
+    }
+  }
+`;
