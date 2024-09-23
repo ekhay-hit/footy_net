@@ -41,6 +41,19 @@ const resolvers = {
         throw new Error("Server Error: Failed to fetch fields");
       }
     },
+
+    gameByDate: async (_, { date }) => {
+      if (!date) {
+        throw new Error("No game on that date");
+      }
+      try {
+        const game = await Game.find({
+          gameDate: date,
+        }).populate("fieldId");
+      } catch (err) {
+        throw new Error("Server: Faild to retrieve the game");
+      }
+    },
   },
   Mutation: {
     // create user Mutation *****************************************************************

@@ -45,6 +45,7 @@ message: String
 type Query{
 me:User
 fieldsByUser:[Fields!]!
+gameByDate(gameDate:Date!): [Game]
 }
 
 type Mutation{
