@@ -23,7 +23,7 @@ export const FIELDS_BY_USER = gql`
   }
 `;
 export const GAME_BY_DATE = gql`
-  query gameByDate($gameDate: String!) {
+  query gameByDate($gameDate: Date!) {
     gameByDate(gameDate: $gameDate) {
       gameDate
       startTime

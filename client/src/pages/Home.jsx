@@ -8,14 +8,14 @@ function Home() {
   const today = new Date();
   const defaultDate = today;
   const [gameDate, setGameDate] = useState(defaultDate);
-  // console.log(gameDate);
-  // const date = new Date(gameDate);
-  // date.setUTCHours(0, 0, 0, 0);
-  // const formatDate = date.toISOString();
+  console.log(gameDate);
+  const date = new Date(gameDate);
+  date.setUTCHours(0, 0, 0, 0);
+  const formatDate = date.getTime();
 
   const { loading, data } = useQuery(GAME_BY_DATE, {
     variables: {
-      gameDate: gameDate,
+      gameDate: formatDate,
     },
     skip: !gameDate,
   });

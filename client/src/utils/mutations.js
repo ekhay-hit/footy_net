@@ -71,7 +71,7 @@ export const CREATE_GAME = gql`
     $capacity: Int!
     $endTime: String!
     $isRecurring: Boolean!
-    $gameDate: String!
+    $gameDate: Date!
   ) {
     createGame(
       fieldName: $fieldName
