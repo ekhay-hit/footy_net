@@ -30,6 +30,10 @@ export const GAME_BY_DATE = gql`
       capacity
       endTime
       userId
+      players {
+        _id
+        username
+      }
       fieldId {
         _id
         fieldName

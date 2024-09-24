@@ -44,7 +44,7 @@ function Home() {
             {loading ? (
               <p>... Loading the games</p>
             ) : (
-              data?.gameByDate?.map((game) => (
+              data?.gameByDate?.map((game, i) => (
                 <Game key={game._id} game={game} />
               ))
             )}
