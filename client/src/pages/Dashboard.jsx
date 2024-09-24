@@ -111,9 +111,7 @@ function Dashboard() {
           <div className="form-area">
             <AddGame />
           </div>
-          <div className="main-area">
-            <Game image={field3} />
-          </div>
+          <div className="main-area">{/* <Game image={field3} /> */}</div>
         </section>
       )}
     </main>
