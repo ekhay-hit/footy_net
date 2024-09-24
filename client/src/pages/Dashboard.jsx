@@ -80,10 +80,10 @@ function Dashboard() {
 
       {showJoinedGames && (
         <div className="section">
-          <Game image={field1} />
-          <Game image={field2} />
-          <Game image={field3} />
-          <Game image={field1} />
+          {/* <Game image={field1} /> */}
+          {/* <Game image={field2} /> */}
+          {/* <Game image={field3} /> */}
+          {/* <Game image={field1} /> */}
         </div>
       )}
       {showAddField && (

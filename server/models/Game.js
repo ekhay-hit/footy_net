@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
   gameDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   startTime: {
@@ -30,7 +30,7 @@ const gameSchema = new Schema({
 
   fieldId: {
     type: Schema.Types.ObjectId,
-    ref: "Field",
+    ref: "Fields",
   },
 });
 

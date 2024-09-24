@@ -42,14 +42,18 @@ const resolvers = {
       }
     },
 
-    gameByDate: async (_, { date }) => {
-      if (!date) {
+    gameByDate: async (_, { gameDate }) => {
+      console.log("this is the date");
+      console.log(gameDate);
+      if (!gameDate) {
         throw new Error("No game on that date");
       }
       try {
-        const game = await Game.find({
-          gameDate: date,
+        const games = await Game.find({
+          gameDate: gameDate,
         }).populate("fieldId");
+        console.log("server", games);
+        return games;
       } catch (err) {
         throw new Error("Server: Faild to retrieve the game");
       }

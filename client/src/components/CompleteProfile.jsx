@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "../components/styles/completeProfile.css";
+import "./styles/completeProfile.css";
 function CompleteProfile({ setAvatar, onUpload, onSkip }) {
   return (
     <form className="about-me ">
