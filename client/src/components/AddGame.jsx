@@ -34,14 +34,20 @@ function AddGame() {
   // handle submit form will un comment this when game mutation done
   const handelSubmitForm = async (event) => {
     event.preventDefault();
-    const gameDateTimestamp = new Date(gameFormData.gameDate).getTime(); // Convert to timestamp
+
+    // const gameDatee = new Date(gameFormData.gameDate); // Convert to timestamp
+    // gameDatee.setUTCHours(0, 0, 0, 0);
+    // const gameDateTimestamp = gameDatee.getTime();
+    // console.log("This is the time stamp");
+    console.log(gameFormData.gameDate);
+    const capacityPlayer = Number(gameFormData.capacity);
     try {
       const { data } = await createGame({
         variables: {
           fieldName: gameFormData.fieldName, // Use fieldId here
-          gameDate: gameDateTimestamp, // Use converted timestamp
+          gameDate: gameFormData.gameDate, // Use converted timestamp
           startTime: gameFormData.startTime,
-          capacity: gameFormData.capacity,
+          capacity: capacityPlayer,
           endTime: gameFormData.endTime,
           isRecurring: gameFormData.isRecurring,
         },
@@ -84,7 +90,7 @@ function AddGame() {
         <input
           min="6"
           max="24"
-          type="number"
+          type="Number"
           name="capacity"
           placeholder="Game capacity"
           value={gameFormData.capacity}

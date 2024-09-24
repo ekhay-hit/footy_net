@@ -14,14 +14,14 @@ user:User
 }
 
 type Game{
-gameDate: Date!
+gameDate: String!
 startTime: String!
 capacity: Int!
 endTime: String!
 isRecurring:Boolean
 players:[User]
 userId:ID!
-fieldId:ID!
+fieldId: Fields!
 }
 
 
@@ -45,7 +45,7 @@ message: String
 type Query{
 me:User
 fieldsByUser:[Fields!]!
-gameByDate(gameDate:Date!): [Game]
+gameByDate(gameDate:String!): [Game]
 }
 
 type Mutation{
@@ -54,7 +54,7 @@ createUser(username:String!, email:String!, password:String!):Auth
 
 login(username: String!, password: String!): Auth
 
-createGame(fieldName: String!, gameDate: Date, startTime: String!, capacity:Int!, endTime: String!, isRecurring:Boolean!) : Game
+createGame(fieldName: String!, gameDate: String!, startTime: String!, capacity:Int!, endTime: String!, isRecurring:Boolean!) : Game
 
 addField(location: String!, fieldName: String!, image:String!): Fields
 

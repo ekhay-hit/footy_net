@@ -23,18 +23,18 @@ export const FIELDS_BY_USER = gql`
   }
 `;
 export const GAME_BY_DATE = gql`
-  query ($gameDate: Date!) {
+  query gameByDate($gameDate: String!) {
     gameByDate(gameDate: $gameDate) {
       gameDate
       startTime
       capacity
       endTime
-      isRecurring
       userId
       fieldId {
-        fieldname
-        location
+        _id
+        fieldName
         image
+        location
       }
     }
   }
