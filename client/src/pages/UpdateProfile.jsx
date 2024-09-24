@@ -1,4 +1,4 @@
-import CompleteProfile from "../components/completeProfile";
+import CompleteProfile from "../components/CompleteProfile.jsx";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
