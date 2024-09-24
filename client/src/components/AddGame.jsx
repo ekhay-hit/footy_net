@@ -35,17 +35,17 @@ function AddGame() {
   const handelSubmitForm = async (event) => {
     event.preventDefault();
 
-    // const gameDatee = new Date(gameFormData.gameDate); // Convert to timestamp
-    // gameDatee.setUTCHours(0, 0, 0, 0);
-    // const gameDateTimestamp = gameDatee.getTime();
-    // console.log("This is the time stamp");
+    const gameDatee = new Date(gameFormData.gameDate); // Convert to timestamp
+    gameDatee.setUTCHours(0, 0, 0, 0);
+    const gameDateTimestamp = gameDatee.getTime();
+    console.log("This is the time stamp");
     console.log(gameFormData.gameDate);
     const capacityPlayer = Number(gameFormData.capacity);
     try {
       const { data } = await createGame({
         variables: {
           fieldName: gameFormData.fieldName, // Use fieldId here
-          gameDate: gameFormData.gameDate, // Use converted timestamp
+          gameDate: gameDateTimestamp, // Use converted timestamp
           startTime: gameFormData.startTime,
           capacity: capacityPlayer,
           endTime: gameFormData.endTime,

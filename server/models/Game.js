@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
   gameDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   startTime: {
