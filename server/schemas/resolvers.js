@@ -42,39 +42,52 @@ const resolvers = {
       }
     },
 
+    // Get Games that are owned by a specific user or owner
     gamesByUser: async (parent, _, { user }) => {
+      // if no user return not authenticated
       if (!user) {
         throw new Error("not authenticated");
       }
       try {
-        const games = await Game.find({ userId: user._id });
-        console.log("this is the server");
-        console.log(games);
+        // look for the games and return those taht owned by the user
+
+        // current date, so only games that past due can be here
+        const currentDate = Date.now();
+        const games = await Game.find({
+          userId: user._id,
+          gameDate: { $gte: currentDate },
+        })
+          .populate("field")
+          .sort({ gameDate: 1 });
         return games;
       } catch (err) {
         throw new Error("Server Error: Failed to fetch games");
       }
     },
 
+    // get Game by a given date ************************************
+
     gameByDate: async (_, { gameDate }) => {
-      console.log("this is the date");
-      console.log(gameDate);
+      // if game date not provided
       if (!gameDate) {
-        throw new Error("No game on that date");
+        throw new Error("In valid date");
       }
 
       try {
+        // get all games taht are schedule on the given date
         const games = await Game.find({
           gameDate: gameDate,
-        }).populate({ path: "field" });
+        }).populate({ path: "field" }); // populate the field using field refe in game collection
 
-        // console.log("server", games);
         return games;
       } catch (err) {
         throw new Error("Server: Faild to retrieve the game");
       }
     },
   },
+
+  //************************All Mutation here  ***************************************/
+
   Mutation: {
     // create user Mutation *****************************************************************
     createUser: async (_, { username, email, password }) => {
@@ -89,6 +102,7 @@ const resolvers = {
         throw new Error(`creating new user failed:${err.message}`);
       }
     },
+
     // login Mutation *****************************************************************
     login: async (_, { username, password }) => {
       const user = await User.findOne({ username });
@@ -107,26 +121,30 @@ const resolvers = {
       return { token, user };
     },
 
-    // AP mutation: Add a game mutation
+    //  mutation: Add a game mutation********************
     createGame: async (
       _,
       { fieldName, gameDate, startTime, capacity, price, endTime, isRecurring },
       { user }
     ) => {
+      // if no user authenticated return error
       if (!user) {
         throw new Error("Not authenticated");
       }
 
       try {
         // search for the field using its name and get the id of the field
+        // before create the game find the field where the game will be played based on the field name selected
+
         const field = await Fields.findOne({ fieldName });
         if (!field) {
           throw new Error("Field with name provided not found");
         }
-        const { _id: fieldId, location, image } = field;
-        // const nameOfField = field.fieldName;
 
-        // console.log(fieldId);
+        // when you find the field using the name destucture the id from the field
+        const { _id: fieldId, location, image } = field;
+
+        // after having field id created the game
         const game = await Game.create({
           gameDate,
           startTime,
@@ -173,7 +191,7 @@ const resolvers = {
       }
 
       try {
-        const field = await Field.create({
+        const field = await Fields.create({
           location,
           fieldName,
           image,
@@ -191,7 +209,7 @@ const resolvers = {
     // Remove Field Mutation ******************************************************
     async removeField(_, { fieldId }) {
       try {
-        const delteField = await Field.findByIdAndDelete(fieldId);
+        const delteField = await Fields.findByIdAndDelete(fieldId);
 
         // if no field found retun the mutationresponse with flase and message
         if (!delteField) {
@@ -216,7 +234,34 @@ const resolvers = {
         };
       }
     },
+    // muatation to delete a game *****************************
 
+    async removeGame(_, { gameId }) {
+      try {
+        const deleteGame = await Game.findByIdAndDelete(gameId);
+        // if no field found retun the mutationresponse with
+        // flase and message
+        if (!deleteGame) {
+          return {
+            success: false,
+            message: "Game not found",
+          };
+        }
+        // if succed return Mutationresponse with true and message
+        return {
+          success: true,
+          message: "Game deleted successfully ",
+        };
+        // else return mutationresponse with false and server issue
+      } catch (err) {
+        console.error("Error removing game", err);
+        return {
+          success: false,
+          message: "Failed to remove the game: server",
+        };
+      }
+    },
+    /// mutation to udpate user **************************
     updateUser: async (_, { avatar }, { user }) => {
       if (!user) {
         throw new Error("You are not authenticated");

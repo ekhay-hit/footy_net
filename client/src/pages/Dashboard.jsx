@@ -8,7 +8,7 @@ import Field from "../components/Field";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { FIELDS_BY_USER, GAMES_BY_USER } from "../utils/queries";
-import { REMOVE_FIELD } from "../utils/mutations";
+import { REMOVE_FIELD, REMOVE_GAME } from "../utils/mutations";
 
 function Dashboard() {
   // states
@@ -54,19 +54,21 @@ function Dashboard() {
   if (errorGames) {
     console.error("Error fetching games:", errorGames);
   }
-  console.log("This is your games data");
-  console.log(gamesData);
-  console.log(
-    "This is your games data:",
-    gamesData ? gamesData : "No data received"
-  );
-  // SECTION FOR MUTATION and its funtions
+  //************************ */ SECTION FOR MUTATION and its funtions*****************
 
   const [removeField, { error }] = useMutation(REMOVE_FIELD, {
     refetchQueries: [{ query: FIELDS_BY_USER }], // REFETCH FIELDS
   });
 
-  // function to handle remove field
+  // USE REMOVE game MUTATION AND REFETCH game by user query to reflect the change after deletion
+
+  const [removeGame] = useMutation(REMOVE_GAME, {
+    refetchQueries: [{ query: GAMES_BY_USER }],
+  });
+
+  //******************FUNCTIONS HERE ********************************* */
+
+  // function to handle remove field *******************
   const handelRemoveField = async (fieldId) => {
     console.log("the id of the field clicked is");
     console.log(fieldId);
@@ -74,6 +76,18 @@ function Dashboard() {
       await removeField({ variables: { fieldId } });
     } catch (error) {
       console.log("Failed to delete the field");
+    }
+  };
+
+  //************function to handle delete games */
+
+  const handelRemoveGame = async (gameId) => {
+    console.log("the id of game clicked is");
+    console.log(gameId);
+    try {
+      await removeGame({ variables: { gameId } });
+    } catch (error) {
+      console.log("Failed to delete the game");
     }
   };
 
@@ -112,7 +126,7 @@ function Dashboard() {
                 <Field
                   key={field._id}
                   field={field}
-                  onRemove={() => handelRemoveField(field._id)}
+                  handleClick={() => handelRemoveField(field._id)}
                 />
               ))
             )}
@@ -134,7 +148,7 @@ function Dashboard() {
                   game={game}
                   buttonText="Delete"
                   buttonClass="remove_gameBtn"
-                  // onRemove={() => handelRemoveGame(game._id)}
+                  handleClick={() => handelRemoveGame(game._id)}
                 />
               ))
             )}

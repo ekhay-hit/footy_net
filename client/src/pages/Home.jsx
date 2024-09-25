@@ -50,11 +50,9 @@ function Home() {
                 <Game
                   key={game._id}
                   game={game}
-                  buttonText="joint"
+                  buttonText="join"
                   buttonClass="joinBtn"
-                >
-                  Join
-                </Game>
+                />
               ))
             )}
           </div>
