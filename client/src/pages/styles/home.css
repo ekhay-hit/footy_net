@@ -30,10 +30,10 @@
   margin-left: auto;
 }
 
-form {
-  background-color: rgb(4, 79, 109) !important;
-  color: white !important;
-  font-weight: bold !important;
+.date-form {
+  background-color: rgb(4, 79, 109);
+  color: white;
+  font-weight: bold;
 }
 
 .form {
