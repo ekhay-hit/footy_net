@@ -47,6 +47,7 @@ message: String
 type Query{
 me:User
 fieldsByUser:[Fields!]!
+gamesByUser:[Game!]!
 gameByDate(gameDate:Date!): [Game]
 }
 
