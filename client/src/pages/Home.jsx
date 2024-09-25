@@ -27,20 +27,22 @@ function Home() {
   return (
     <>
       <div className="home-main">
-        <h3>Game </h3>
-        <form className="main form-control">
-          <label>Search Game date:</label>
-          <input
-            type="date"
-            name="gameDate"
-            placeholder="Select a date"
-            value={gameDate}
-            onChange={handleDateChange}
-            className="form-control"
-          />
-        </form>
-        <section className="sub-section">
-          <div className="main-area">
+        <div className="form">
+          <form className="date-form form-control">
+            <label>Search games by date:</label>
+            <input
+              type="date"
+              name="gameDate"
+              placeholder="Select a date"
+              value={gameDate}
+              onChange={handleDateChange}
+              className="form-control"
+            />
+          </form>
+          {loading && <h6>....Loading games</h6>}
+        </div>
+        <section className="home-section">
+          <div className="home-area">
             {loading ? (
               <p>... Loading the games</p>
             ) : (
