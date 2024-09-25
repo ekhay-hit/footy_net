@@ -10,11 +10,12 @@ function Game({ game }) {
       <h6>
         {game.players.length}/{game.capacity} Spots Filled
       </h6>
+      <h6>{new Date(game.gameDate).toISOString().split("T")[0]}</h6>
       <div className="info">
         <span className="date">
           {game.startTime} - {game.endTime}
         </span>
-        <span className="price">$11.50</span>
+        <span className="price">{game.price}</span>
       </div>
       <button className="joinBtn">Join</button>
     </div>
