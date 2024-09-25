@@ -14,6 +14,10 @@ const gameSchema = new Schema({
     type: Number,
     required: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   endTime: {
     type: String,
     required: true,
@@ -28,7 +32,7 @@ const gameSchema = new Schema({
 
   players: [{ type: Schema.Types.ObjectId, ref: "User" }],
 
-  fieldId: {
+  field: {
     type: Schema.Types.ObjectId,
     ref: "Fields",
   },

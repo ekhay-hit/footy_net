@@ -17,12 +17,14 @@ type Game{
 gameDate: Date!
 startTime: String!
 capacity: Int!
+price:Float!
 endTime: String!
 isRecurring:Boolean
 players:[User]
 userId:ID!
-fieldId: Fields!
+field: Fields
 }
+
 
 
 type Fields {
@@ -54,7 +56,7 @@ createUser(username:String!, email:String!, password:String!):Auth
 
 login(username: String!, password: String!): Auth
 
-createGame(fieldName: String!, gameDate: Date!, startTime: String!, capacity:Int!, endTime: String!, isRecurring:Boolean!) : Game
+createGame(fieldName: String!, gameDate: Date!, startTime: String!, capacity:Int!,price:Float! ,endTime: String!, isRecurring:Boolean!) : Game
 
 addField(location: String!, fieldName: String!, image:String!): Fields
 

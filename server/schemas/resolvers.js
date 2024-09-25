@@ -48,10 +48,12 @@ const resolvers = {
       if (!gameDate) {
         throw new Error("No game on that date");
       }
+
       try {
         const games = await Game.find({
           gameDate: gameDate,
-        }).populate("fieldId");
+        }).populate({ path: "field" });
+
         console.log("server", games);
         return games;
       } catch (err) {
@@ -94,7 +96,7 @@ const resolvers = {
     // AP mutation: Add a game mutation
     createGame: async (
       _,
-      { fieldName, gameDate, startTime, capacity, endTime, isRecurring },
+      { fieldName, gameDate, startTime, capacity, price, endTime, isRecurring },
       { user }
     ) => {
       if (!user) {
@@ -107,18 +109,21 @@ const resolvers = {
         if (!field) {
           throw new Error("Field with name provided not found");
         }
+        const { _id: fieldId, location, image } = field;
+        const nameOfField = field.fieldName;
 
-        const fieldId = field._id;
-
+        console.log(fieldId);
         const game = await Game.create({
           gameDate,
           startTime,
           capacity,
+          price,
           endTime,
           userId: user._id,
           isRecurring,
-          fieldId,
+          field: fieldId,
         });
+
         if (!game) {
           throw new Error(`Failed to created new game.`);
         }
@@ -131,11 +136,12 @@ const resolvers = {
             nextDate.setDate(date.getDate() + i);
             await Game.create({
               capacity,
+              price,
               startTime,
               endTime,
               gameDate: nextDate.toISOString(),
               isRecurring: true,
-              fieldId,
+              field: fieldId,
               userId: user._id,
             });
           }
@@ -145,6 +151,7 @@ const resolvers = {
         throw new Error(`Creating new game failed:${err.message}`);
       }
     },
+
     // add a field mutation **************************************************
     addField: async (_, { location, fieldName, image }, { user }) => {
       if (!user) {

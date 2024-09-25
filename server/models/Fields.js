@@ -17,12 +17,6 @@ const fieldsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  //     games:[
-  //     {
-  //         type: Schema.Types.ObjectId,
-  //         ref: 'Game',
-  //     }
-  // ]
 });
 
 const Fields = model("Fields", fieldsSchema);
