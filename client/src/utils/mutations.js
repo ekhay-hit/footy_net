@@ -69,6 +69,7 @@ export const CREATE_GAME = gql`
     $fieldName: String!
     $startTime: String!
     $capacity: Int!
+    $price: Float!
     $endTime: String!
     $isRecurring: Boolean!
     $gameDate: Date!
@@ -77,6 +78,7 @@ export const CREATE_GAME = gql`
       fieldName: $fieldName
       startTime: $startTime
       capacity: $capacity
+      price: $price
       endTime: $endTime
       isRecurring: $isRecurring
       gameDate: $gameDate
@@ -87,7 +89,6 @@ export const CREATE_GAME = gql`
       endTime
       isRecurring
       userId
-      fieldId
     }
   }
 `;

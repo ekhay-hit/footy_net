@@ -9,6 +9,7 @@ function AddGame() {
   const [gameFormData, setGameFormData] = useState({
     fieldName: "",
     capacity: 12,
+    price: 10,
     startTime: "",
     endTime: "",
     gameDate: "",
@@ -41,6 +42,7 @@ function AddGame() {
     console.log("This is the time stamp");
     console.log(gameFormData.gameDate);
     const capacityPlayer = Number(gameFormData.capacity);
+    const gamePrice = Number(gameFormData.price);
     try {
       const { data } = await createGame({
         variables: {
@@ -48,6 +50,7 @@ function AddGame() {
           gameDate: gameDateTimestamp, // Use converted timestamp
           startTime: gameFormData.startTime,
           capacity: capacityPlayer,
+          price: gamePrice,
           endTime: gameFormData.endTime,
           isRecurring: gameFormData.isRecurring,
         },
@@ -94,6 +97,16 @@ function AddGame() {
           name="capacity"
           placeholder="Game capacity"
           value={gameFormData.capacity}
+          onChange={handleSignupInput}
+          className="form-control"
+        />
+
+        <label> Price:</label>
+        <input
+          type="input"
+          name="price"
+          placeholder="Game capacity"
+          value={gameFormData.price}
           onChange={handleSignupInput}
           className="form-control"
         />
