@@ -3,17 +3,13 @@ import { useState } from "react";
 import Button from "../components/Button";
 import AddField from "../components/AddField";
 import AddGame from "../components/AddGame";
-import Game from "../components/Game";
+import Game from "../components/Game.jsx";
 import Field from "../components/Field";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { FIELDS_BY_USER } from "../utils/queries";
+import { FIELDS_BY_USER, GAMES_BY_USER } from "../utils/queries";
 import { REMOVE_FIELD } from "../utils/mutations";
 
-// import images for field
-import field1 from "../assets/images/field1.jpeg";
-import field2 from "../assets/images/field2.jpeg";
-import field3 from "../assets/images/field3.jpeg";
 function Dashboard() {
   // states
   const [showJoinedGames, setShowJoinedGames] = useState(true);
@@ -41,12 +37,29 @@ function Dashboard() {
 
   // section for queries
 
+  //*************************** */ GET Fields owened by a user ******************************************************************
   const {
     loading: loadingFields,
     error: errorField,
     data: fieldsData,
   } = useQuery(FIELDS_BY_USER);
 
+  //*************************** */ GET Games owned by a user ******************************************************************
+  const {
+    loading: loadingGames,
+    error: errorGames,
+    data: gamesData,
+  } = useQuery(GAMES_BY_USER);
+
+  if (errorGames) {
+    console.error("Error fetching games:", errorGames);
+  }
+  console.log("This is your games data");
+  console.log(gamesData);
+  console.log(
+    "This is your games data:",
+    gamesData ? gamesData : "No data received"
+  );
   // SECTION FOR MUTATION and its funtions
 
   const [removeField, { error }] = useMutation(REMOVE_FIELD, {
@@ -67,13 +80,13 @@ function Dashboard() {
   return (
     <main className="dash-main">
       <nav>
-        <Button className="button" handleBtnClick={showJoinedGameSection}>
+        <Button className="button" onClick={showJoinedGameSection}>
           My joined games
         </Button>
-        <Button className="button" handleBtnClick={showAddGameSection}>
+        <Button className="button" onClick={showAddGameSection}>
           Add game
         </Button>
-        <Button className="button" handleBtnClick={showAddFieldSection}>
+        <Button className="button" onClick={showAddFieldSection}>
           Add Field
         </Button>
       </nav>
@@ -111,7 +124,21 @@ function Dashboard() {
           <div className="form-area">
             <AddGame />
           </div>
-          <div className="main-area">{/* <Game image={field3} /> */}</div>
+          <div className="main-area">
+            {loadingGames ? (
+              <p>... Loading your Games</p>
+            ) : (
+              gamesData?.gamesByUser?.map((game) => (
+                <Game
+                  key={game._id}
+                  game={game}
+                  buttonText="Delete"
+                  buttonClass="remove_gameBtn"
+                  // onRemove={() => handelRemoveGame(game._id)}
+                />
+              ))
+            )}
+          </div>
         </section>
       )}
     </main>

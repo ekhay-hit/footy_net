@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import Button from "../components/Button.jsx";
 import("../components/styles/game.css");
 
-function Game({ game }) {
+function Game({ game, buttonText, buttonClass, onRemove }) {
   return (
     <div className="card">
       <img src={game.field.image} alt="field image" />
@@ -17,7 +18,9 @@ function Game({ game }) {
         </span>
         <span className="price">{game.price}</span>
       </div>
-      <button className="joinBtn">Join</button>
+      <Button className={buttonClass} onClick={onRemove}>
+        {buttonText}
+      </Button>
     </div>
   );
 }

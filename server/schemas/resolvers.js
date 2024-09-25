@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Field = require("../models/Fields");
+const Fields = require("../models/Fields");
 const Game = require("../models/Game");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const dateScalar = require("../utils/dateScalar");
@@ -35,10 +35,24 @@ const resolvers = {
         throw new Error("not authenticated");
       }
       try {
-        const fields = await Field.find({ userId: user._id });
+        const fields = await Fields.find({ userId: user._id });
         return fields;
       } catch (err) {
         throw new Error("Server Error: Failed to fetch fields");
+      }
+    },
+
+    gamesByUser: async (parent, _, { user }) => {
+      if (!user) {
+        throw new Error("not authenticated");
+      }
+      try {
+        const games = await Game.find({ userId: user._id });
+        console.log("this is the server");
+        console.log(games);
+        return games;
+      } catch (err) {
+        throw new Error("Server Error: Failed to fetch games");
       }
     },
 
@@ -54,7 +68,7 @@ const resolvers = {
           gameDate: gameDate,
         }).populate({ path: "field" });
 
-        console.log("server", games);
+        // console.log("server", games);
         return games;
       } catch (err) {
         throw new Error("Server: Faild to retrieve the game");
@@ -105,14 +119,14 @@ const resolvers = {
 
       try {
         // search for the field using its name and get the id of the field
-        const field = await Field.findOne({ fieldName });
+        const field = await Fields.findOne({ fieldName });
         if (!field) {
           throw new Error("Field with name provided not found");
         }
         const { _id: fieldId, location, image } = field;
-        const nameOfField = field.fieldName;
+        // const nameOfField = field.fieldName;
 
-        console.log(fieldId);
+        // console.log(fieldId);
         const game = await Game.create({
           gameDate,
           startTime,

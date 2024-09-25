@@ -47,3 +47,26 @@ export const GAME_BY_DATE = gql`
     }
   }
 `;
+export const GAMES_BY_USER = gql`
+  query gamesByUser {
+    gamesByUser {
+      capacity
+      endTime
+      field {
+        _id
+        image
+      }
+      gameDate
+      isRecurring
+      price
+      startTime
+      userId
+      players {
+        _id
+        username
+        email
+        avatar
+      }
+    }
+  }
+`;

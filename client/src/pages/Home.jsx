@@ -47,7 +47,14 @@ function Home() {
               <p>... Loading the games</p>
             ) : (
               data?.gameByDate?.map((game) => (
-                <Game key={game._id} game={game} />
+                <Game
+                  key={game._id}
+                  game={game}
+                  buttonText="joint"
+                  buttonClass="joinBtn"
+                >
+                  Join
+                </Game>
               ))
             )}
           </div>
