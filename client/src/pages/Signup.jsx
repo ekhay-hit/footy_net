@@ -3,8 +3,6 @@ import "./styles/singup.css";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 
 function Signup() {

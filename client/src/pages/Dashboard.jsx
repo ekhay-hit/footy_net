@@ -107,12 +107,23 @@ function Dashboard() {
       </nav>
 
       {showJoinedGames && (
-        <div className="section">
-          {/* <Game image={field1} /> */}
-          {/* <Game image={field2} /> */}
-          {/* <Game image={field3} /> */}
-          {/* <Game image={field1} /> */}
-        </div>
+        <section className="sub-section">
+          <div className="main-area">
+            {loadingGames ? (
+              <p>... Loading your Games</p>
+            ) : (
+              gamesData?.gamesByUser?.map((game) => (
+                <Game
+                  key={game._id}
+                  game={game}
+                  buttonText="Delete"
+                  buttonClass="remove_gameBtn"
+                  handleClick={() => handelRemoveGame(game._id)}
+                />
+              ))
+            )}
+          </div>
+        </section>
       )}
       {showAddField && (
         <section className="sub-section">
