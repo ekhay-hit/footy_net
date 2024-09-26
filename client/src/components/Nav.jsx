@@ -56,7 +56,7 @@ function Nav() {
         )}
         {Auth.loggedIn() ? (
           <Link className="logout item" onClick={logout}>
-            logout
+            logout ➡️
           </Link>
         ) : (
           <Link

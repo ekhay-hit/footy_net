@@ -93,6 +93,7 @@ function Dashboard() {
 
   return (
     <main className="dash-main">
+      <h1 className="title">Administrative Board</h1>
       <nav>
         <Button className="button" onClick={showJoinedGameSection}>
           My joined games

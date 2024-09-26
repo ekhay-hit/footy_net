@@ -130,7 +130,9 @@ function AddGame() {
           onChange={handleSignupInput}
           className="form-control"
         />
-        <label>Is this game recurring over the next 30 days?</label>
+        <label className="col-12">
+          Is this game recurring over the next 30 days?
+        </label>
         <input
           type="checkbox"
           name="isRecurring"
@@ -138,6 +140,7 @@ function AddGame() {
           onChange={handleSignupInput}
         />
         <span> Yes, make it recurring.</span>
+        <br></br>
 
         <button>Add Game</button>
       </form>
