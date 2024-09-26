@@ -6,7 +6,7 @@ function Game({ game, buttonText, buttonClass, handleClick }) {
   return (
     <div className="card">
       <img src={game.field.image} alt="field image" />
-      <h2>Winter Garden</h2>
+      <h2>{game.field.fieldName}</h2>
       <h6>{game.field.location}</h6>
       <h5>
         {game.players.length}/{game.capacity} Spots Filled

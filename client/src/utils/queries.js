@@ -56,6 +56,7 @@ export const GAMES_BY_USER = gql`
       endTime
       field {
         _id
+        fieldName
         image
         location
         userId
