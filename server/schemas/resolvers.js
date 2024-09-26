@@ -58,6 +58,7 @@ const resolvers = {
           gameDate: { $gte: currentDate },
         })
           .populate("field")
+          .populate("players")
           .sort({ gameDate: 1 });
         return games;
       } catch (err) {
@@ -77,7 +78,9 @@ const resolvers = {
         // get all games taht are schedule on the given date
         const games = await Game.find({
           gameDate: gameDate,
-        }).populate({ path: "field" }); // populate the field using field refe in game collection
+        })
+          .populate({ path: "field" })
+          .populate("players"); // populate the field using field refe in game collection
 
         return games;
       } catch (err) {
@@ -279,6 +282,40 @@ const resolvers = {
         return updateUser;
       } catch (error) {
         console.error("failed to update user");
+      }
+    },
+
+    // mutation to join games
+    joinGames: async (_, { gameId }, { user }) => {
+      if (!user) {
+        throw new Error("not authenticated");
+      }
+      try {
+        // find the game
+        const game = await Game.findById(gameId).populate("field");
+        if (!game) {
+          throw new Error("game not found");
+        }
+
+        // check if the user joined already the game
+        if (
+          game.players.some(
+            (player) => player.user.toString() === user._id.toString()
+          )
+        ) {
+          return game;
+        }
+
+        game.players.push(user._id);
+
+        await game.save();
+
+        const updatedGame = await Game.findById(gameId)
+          .populate("field")
+          .populate("players");
+        return updatedGame;
+      } catch (error) {
+        throw new Error("Server: failed to join the game");
       }
     },
   },

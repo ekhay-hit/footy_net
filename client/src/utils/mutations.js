@@ -102,3 +102,30 @@ export const CREATE_GAME = gql`
     }
   }
 `;
+export const JOIN_GAMES = gql`
+  mutation joinGames($gameId: ID!) {
+    joinGames(gameId: $gameId) {
+      _id
+      gameDate
+      startTime
+      capacity
+      price
+      endTime
+      isRecurring
+      players {
+        _id
+        username
+        email
+        avatar
+      }
+      userId
+      field {
+        _id
+        location
+        fieldName
+        image
+        userId
+      }
+    }
+  }
+`;

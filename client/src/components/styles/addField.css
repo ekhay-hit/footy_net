@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 90%;
+  /* height: 100vh; */
   gap: 10px;
   box-shadow: 4px 4px 20px;
 

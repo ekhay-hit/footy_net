@@ -66,6 +66,8 @@ removeField(fieldId:ID!): MutationResponse
 
 removeGame(gameId:ID!): MutationResponse
 
+joinGames(gameId:ID!):Game
+
 updateUser(avatar:String!):Auth
 
 # saveUser(user: UserInput!): User
