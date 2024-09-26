@@ -14,6 +14,7 @@ user:User
 }
 
 type Game{
+_id:ID!
 gameDate: Date!
 startTime: String!
 capacity: Int!
@@ -62,6 +63,8 @@ createGame(fieldName: String!, gameDate: Date!, startTime: String!, capacity:Int
 addField(location: String!, fieldName: String!, image:String!): Fields
 
 removeField(fieldId:ID!): MutationResponse
+
+removeGame(gameId:ID!): MutationResponse
 
 updateUser(avatar:String!):Auth
 

@@ -20,6 +20,7 @@ function Home() {
     skip: !gameDate,
   });
 
+  // get the date from the form change the state
   const handleDateChange = (e) => {
     setGameDate(e.target.value);
   };
@@ -50,11 +51,10 @@ function Home() {
                 <Game
                   key={game._id}
                   game={game}
-                  buttonText="joint"
+                  buttonText="join"
                   buttonClass="joinBtn"
-                >
-                  Join
-                </Game>
+                  handleClick={handleJoinGame}
+                />
               ))
             )}
           </div>

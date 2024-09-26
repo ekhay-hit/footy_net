@@ -50,11 +50,14 @@ export const GAME_BY_DATE = gql`
 export const GAMES_BY_USER = gql`
   query gamesByUser {
     gamesByUser {
+      _id
       capacity
       endTime
       field {
         _id
         image
+        location
+        userId
       }
       gameDate
       isRecurring
