@@ -25,6 +25,8 @@ function Home() {
     setGameDate(e.target.value);
   };
 
+  // handle join the game
+  function handleJoinGame() {}
   return (
     <>
       <div className="home-main">
@@ -53,7 +55,7 @@ function Home() {
                   game={game}
                   buttonText="join"
                   buttonClass="joinBtn"
-                  handleClick={handleJoinGame}
+                  handleClick={() => handleJoinGame(game.userId)}
                 />
               ))
             )}
