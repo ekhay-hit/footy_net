@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../components/styles/addField.css";
 import { useMutation, useQuery } from "@apollo/client";
-import { FIELDS_BY_USER } from "../utils/queries";
+import { FIELDS_BY_USER, GAME_BY_DATE, GAMES_BY_USER } from "../utils/queries";
 import { CREATE_GAME } from "../utils/mutations";
 
 function AddGame() {
@@ -22,7 +22,10 @@ function AddGame() {
     error: errorField,
     data: fieldsData,
   } = useQuery(FIELDS_BY_USER);
-  const [createGame, { error }] = useMutation(CREATE_GAME);
+
+  const [createGame, { error }] = useMutation(CREATE_GAME, {
+    refetchQueries: [{ query: GAMES_BY_USER }, { query: GAME_BY_DATE }],
+  });
   // handel add game input data
   const handleSignupInput = (event) => {
     const { name, value, type, checked } = event.target;
