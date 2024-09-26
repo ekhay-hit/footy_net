@@ -12,9 +12,9 @@ import { REMOVE_FIELD, REMOVE_GAME } from "../utils/mutations";
 
 function Dashboard() {
   // states
-  const [showJoinedGames, setShowJoinedGames] = useState(true);
+  const [showJoinedGames, setShowJoinedGames] = useState(false);
   const [showAddField, setShowAddField] = useState(false);
-  const [showAddGames, setShowAddGames] = useState(false);
+  const [showAddGames, setShowAddGames] = useState(true);
 
   // function to handle states
   function showJoinedGameSection() {

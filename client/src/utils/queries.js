@@ -25,6 +25,7 @@ export const FIELDS_BY_USER = gql`
 export const GAME_BY_DATE = gql`
   query GameByDate($gameDate: Date!) {
     gameByDate(gameDate: $gameDate) {
+      _id
       capacity
       endTime
       gameDate

@@ -1,7 +1,8 @@
 import "./styles/home.css";
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GAME_BY_DATE } from "../utils/queries";
+import { JOIN_GAMES } from "../utils/mutations.js";
 import Game from "../components/Game.jsx";
 function Home() {
   // get the today default date
@@ -20,11 +21,23 @@ function Home() {
     skip: !gameDate,
   });
 
+  const [joinGames, { error }] = useMutation(JOIN_GAMES, {
+    refetchQueries: [{ query: GAME_BY_DATE }],
+  });
   // get the date from the form change the state
   const handleDateChange = (e) => {
     setGameDate(e.target.value);
   };
 
+  // handle join the game
+  const handleJoinGame = async (gameId) => {
+    console.log(`This ia the game id: ${gameId}`);
+    try {
+      await joinGames({ variables: { gameId } });
+    } catch (error) {
+      console.log("Failed to join the game");
+    }
+  };
   return (
     <>
       <div className="home-main">
@@ -53,7 +66,7 @@ function Home() {
                   game={game}
                   buttonText="join"
                   buttonClass="joinBtn"
-                  handleClick={handleJoinGame}
+                  handleClick={() => handleJoinGame(game._id)}
                 />
               ))
             )}

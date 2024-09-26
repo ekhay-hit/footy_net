@@ -8,15 +8,15 @@ function Game({ game, buttonText, buttonClass, handleClick }) {
       <img src={game.field.image} alt="field image" />
       <h2>Winter Garden</h2>
       <h6>{game.field.location}</h6>
-      <h6>
+      <h5>
         {game.players.length}/{game.capacity} Spots Filled
-      </h6>
+      </h5>
       <h6>{new Date(game.gameDate).toISOString().split("T")[0]}</h6>
       <div className="info">
         <span className="date">
           {game.startTime} - {game.endTime}
         </span>
-        <span className="price">{game.price}</span>
+        <span className="price">${game.price}</span>
       </div>
       <Button className={buttonClass} onClick={handleClick}>
         {buttonText}

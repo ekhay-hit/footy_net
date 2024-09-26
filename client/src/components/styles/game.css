@@ -42,3 +42,8 @@
   margin: auto;
   border-radius: 25px;
 }
+
+h5 {
+  font-weight: bold;
+  color: rgb(100, 15, 179);
+}
