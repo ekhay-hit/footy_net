@@ -50,6 +50,16 @@ export const REMOVE_FIELD = gql`
     }
   }
 `;
+
+export const REMOVE_GAME = gql`
+  mutation removeGame($gameId: ID!) {
+    removeGame(gameId: $gameId) {
+      success
+      message
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation updateUser($avatar: String!) {
     updateUser(avatar: $avatar) {

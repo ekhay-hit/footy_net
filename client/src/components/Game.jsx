@@ -2,7 +2,7 @@
 import Button from "../components/Button.jsx";
 import("../components/styles/game.css");
 
-function Game({ game, buttonText, buttonClass, onRemove }) {
+function Game({ game, buttonText, buttonClass, handleClick }) {
   return (
     <div className="card">
       <img src={game.field.image} alt="field image" />
@@ -18,7 +18,7 @@ function Game({ game, buttonText, buttonClass, onRemove }) {
         </span>
         <span className="price">{game.price}</span>
       </div>
-      <Button className={buttonClass} onClick={onRemove}>
+      <Button className={buttonClass} onClick={handleClick}>
         {buttonText}
       </Button>
     </div>
