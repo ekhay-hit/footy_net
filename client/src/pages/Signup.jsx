@@ -40,7 +40,7 @@ function Signup() {
   };
   return (
     <main className="signup-main">
-      <form className="form form-control" onSubmit={handelSubmitForm}>
+      <form className="myform form-control" onSubmit={handelSubmitForm}>
         <label>Username:</label>
         <input
           type="text"
