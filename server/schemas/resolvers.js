@@ -52,10 +52,9 @@ const resolvers = {
         // look for the games and return those taht owned by the user
 
         // current date, so only games that past due can be here
-        const currentDate = Date.now();
+
         const games = await Game.find({
           userId: user._id,
-          gameDate: { $gte: currentDate },
         })
           .populate("field")
           .populate("players")
