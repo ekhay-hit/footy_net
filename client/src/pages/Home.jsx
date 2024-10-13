@@ -41,7 +41,7 @@ function Home() {
   return (
     <>
       <div className="home-main">
-        <div className="form">
+        <div className="date-selector">
           <form className="date-form form-control">
             <label>Search games by date:</label>
             <input

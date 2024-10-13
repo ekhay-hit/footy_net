@@ -18,6 +18,7 @@
 }
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   flex: 0 0 100%;
   /* width: 100% !important ; */
@@ -47,6 +48,7 @@ nav {
 
 .sub-section {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   margin-top: 100px;
   height: 100vh;
@@ -78,4 +80,26 @@ nav {
   background-color: rgb(235, 9, 9);
   margin: auto;
   border-radius: 25px;
+}
+
+@media screen and (max-width: 1400px) {
+  .dash-main {
+    width: 100%;
+    padding: 2px;
+  }
+  .title {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 60px;
+  }
+
+  .form-area {
+    width: 100%;
+  }
+
+  .main-area {
+    gap: 10px;
+    width: 100%;
+  }
 }
