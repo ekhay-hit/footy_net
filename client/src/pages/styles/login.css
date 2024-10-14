@@ -53,10 +53,15 @@
   }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1400px) {
+@media screen and (max-width: 1400px) {
   .form {
     width: 80%;
     margin: auto;
     margin-top: 100px;
+  }
+
+  .form-login {
+    width: 100%;
+    margin-top: 80px;
   }
 }
