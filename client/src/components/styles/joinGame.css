@@ -1,13 +1,14 @@
 .btn-style {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  padding-bottom: 30px;
   background-color: #141614; /* Dark color */
   color: white; /* Text color */
   border: none; /* Remove border */
   box-shadow: none;
   text-align: center;
+  font-size: 16px;
+  font-weight: bolder;
 }
 .btn {
   width: 150px;

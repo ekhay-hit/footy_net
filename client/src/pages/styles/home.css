@@ -40,6 +40,14 @@
   margin-bottom: 100px;
 }
 
+.join-game {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  left: 38%;
+  background-color: white;
+}
+
 @media screen and (max-width: 1400px) {
   .home-main {
     width: 100%;
@@ -56,5 +64,10 @@
 
   .date-selector {
     width: 100% !important;
+  }
+
+  .join-game {
+    width: 100%;
+    left: 0%;
   }
 }
