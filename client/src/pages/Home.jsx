@@ -5,7 +5,11 @@ import { GAME_BY_DATE } from "../utils/queries";
 import { JOIN_GAMES } from "../utils/mutations.js";
 import Game from "../components/Game.jsx";
 import JoinGame from "../components/JoinGame.jsx";
+
 function Home() {
+  //used to show the dialog box for showing the game info and join or add friend to join
+  const [selectedGame, setSelectedGame] = useState(null);
+  // use for storing the game that user clicked to join and passing it to dialog t show the game info
   // get the today default date
   const today = new Date();
   const defaultDate = today;
@@ -30,15 +34,22 @@ function Home() {
     setGameDate(e.target.value);
   };
 
+  // showing the box to joing the game
+
+  function handleShowJoinGame(game) {
+    console.log("I am here in selection");
+    setSelectedGame(game);
+  }
+
   // handle join the game
-  const handleJoinGame = async (gameId) => {
-    console.log(`This ia the game id: ${gameId}`);
-    try {
-      await joinGames({ variables: { gameId } });
-    } catch (error) {
-      console.log("Failed to join the game");
-    }
-  };
+  // const handleJoinGame = async (gameId) => {
+  // console.log(`This ia the game id: ${gameId}`);
+  // try {
+  // await joinGames({ variables: { gameId } });
+  // } catch (error) {
+  // console.log("Failed to join the game");
+  // }
+  // };
   return (
     <>
       <div className="home-main">
@@ -58,6 +69,11 @@ function Home() {
         </div>
         <section className="home-section">
           <div className="home-area">
+            {selectedGame && (
+              <section className="join-game">
+                <JoinGame selectedGame={selectedGame} />
+              </section>
+            )}
             {loading ? (
               <p>... Loading the games</p>
             ) : (
@@ -67,14 +83,12 @@ function Home() {
                   game={game}
                   buttonText="join"
                   buttonClass="joinBtn"
-                  handleClick={() => handleJoinGame(game._id)}
+                  handleClick={() => handleShowJoinGame(game)}
                 />
               ))
             )}
           </div>
         </section>
-
-        <JoinGame />
       </div>
     </>
   );
