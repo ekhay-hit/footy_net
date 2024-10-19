@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GAME_BY_DATE } from "../utils/queries";
 import { JOIN_GAMES } from "../utils/mutations.js";
 import Game from "../components/Game.jsx";
+import JoinGame from "../components/JoinGame.jsx";
 function Home() {
   // get the today default date
   const today = new Date();
@@ -72,6 +73,8 @@ function Home() {
             )}
           </div>
         </section>
+
+        <JoinGame />
       </div>
     </>
   );

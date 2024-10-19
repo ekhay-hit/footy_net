@@ -1,0 +1,23 @@
+.btn-style {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding-bottom: 30px;
+  background-color: #141614; /* Dark color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  box-shadow: none;
+  text-align: center;
+}
+.btn {
+  width: 150px;
+  box-shadow: none;
+  color: rgb(32, 150, 36);
+  font-weight: bolder;
+  /* border: 2px solid black; */
+}
+.btn-cancel {
+  margin-right: auto;
+}
+.btn-join {
+}
