@@ -40,6 +40,11 @@ function Home() {
     console.log("I am here in selection");
     setSelectedGame(game);
   }
+  function handleCancel() {
+    console.log("I am here in selection");
+    setSelectedGame(null);
+  }
+  // handle join the game
 
   // handle join the game
   // const handleJoinGame = async (gameId) => {
@@ -71,7 +76,10 @@ function Home() {
           <div className="home-area">
             {selectedGame && (
               <section className="join-game">
-                <JoinGame selectedGame={selectedGame} />
+                <JoinGame
+                  selectedGame={selectedGame}
+                  handleCancel={() => handleCancel()}
+                />
               </section>
             )}
             {loading ? (
