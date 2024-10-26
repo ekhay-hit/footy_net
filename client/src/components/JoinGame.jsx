@@ -23,6 +23,9 @@ function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
         <span className="mx-2 my-3">
           <button
             className="btn-style"
+            disabled={
+              count + selectedGame.players.length + 2 > selectedGame.capacity
+            }
             onClick={() => setCount((prevCount) => prevCount + 1)}
           >
             +
@@ -30,6 +33,7 @@ function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
           <span> {count} </span>
           <button
             className="btn-style"
+            disabled={count < 1}
             onClick={() => setCount((prevCount) => prevCount - 1)}
           >
             -
