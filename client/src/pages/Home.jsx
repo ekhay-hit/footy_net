@@ -47,14 +47,16 @@ function Home() {
   // handle join the game
 
   // handle join the game
-  // const handleJoinGame = async (gameId) => {
-  // console.log(`This ia the game id: ${gameId}`);
-  // try {
-  // await joinGames({ variables: { gameId } });
-  // } catch (error) {
-  // console.log("Failed to join the game");
-  // }
-  // };
+  const handleJoinGame = async (gameId, count) => {
+    try {
+      console.log(count);
+      console.log(gameId);
+      await joinGames({ variables: { gameId, count } });
+      setSelectedGame(null);
+    } catch (error) {
+      console.log("Failed to join the game");
+    }
+  };
   return (
     <>
       <div className="home-main">
@@ -79,6 +81,7 @@ function Home() {
                 <JoinGame
                   selectedGame={selectedGame}
                   handleCancel={() => handleCancel()}
+                  handleJoinGame={handleJoinGame}
                 />
               </section>
             )}
