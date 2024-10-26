@@ -103,8 +103,8 @@ export const CREATE_GAME = gql`
   }
 `;
 export const JOIN_GAMES = gql`
-  mutation joinGames($gameId: ID!) {
-    joinGames(gameId: $gameId) {
+  mutation joinGames($gameId: ID!, $count: Int!) {
+    joinGames(gameId: $gameId, count: $count) {
       _id
       gameDate
       startTime

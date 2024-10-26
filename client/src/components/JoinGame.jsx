@@ -1,7 +1,7 @@
 import { useState } from "react";
 /* eslint-disable react/prop-types */
 import("../components/styles/joinGame.css");
-function JoinGame({ selectedGame, handleCancel }) {
+function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
   const [count, setCount] = useState(0);
   return (
     <div className="row border border-dark rounded  col-lg-3 col-md-10 ">
@@ -43,7 +43,12 @@ function JoinGame({ selectedGame, handleCancel }) {
           <button onClick={handleCancel} className="btn  my-2  btn-cancel ">
             CANCEL
           </button>
-          <button className=" btn my-2 btn-join">JOIN</button>
+          <button
+            onClick={() => handleJoinGame(selectedGame._id, count)}
+            className=" btn my-2 btn-join"
+          >
+            JOIN
+          </button>
         </div>
       </div>
     </div>

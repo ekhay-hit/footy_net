@@ -285,7 +285,7 @@ const resolvers = {
     },
 
     // mutation to join games
-    joinGames: async (_, { gameId }, { user }) => {
+    joinGames: async (_, { gameId, count }, { user }) => {
       if (!user) {
         throw new Error("not authenticated");
       }
@@ -297,15 +297,21 @@ const resolvers = {
         }
 
         // check if the user joined already the game
-        if (
-          game.players.some(
-            (player) => player.user.toString() === user._id.toString()
-          )
-        ) {
-          return game;
-        }
+        // if (
+        // game.players.some(
+        // (player) => player.user.toString() === user._id.toString()
+        // )
+        // ) {
+        // return game;
+        // }
 
         game.players.push(user._id);
+
+        if (count > 0) {
+          for (let i = 0; i < count; i++) {
+            game.players.push(user._id);
+          }
+        }
 
         await game.save();
 
