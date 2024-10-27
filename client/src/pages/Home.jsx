@@ -6,7 +6,12 @@ import { JOIN_GAMES } from "../utils/mutations.js";
 import Game from "../components/Game.jsx";
 import JoinGame from "../components/JoinGame.jsx";
 
+import { useUser } from "../context/UserContext";
+
 function Home() {
+  // using context to get the user that loggs in
+  const { user } = useUser();
+
   //used to show the dialog box for showing the game info and join or add friend to join
   const [selectedGame, setSelectedGame] = useState(null);
   // use for storing the game that user clicked to join and passing it to dialog t show the game info
@@ -88,15 +93,20 @@ function Home() {
             {loading ? (
               <p>... Loading the games</p>
             ) : (
-              data?.gameByDate?.map((game) => (
-                <Game
-                  key={game._id}
-                  game={game}
-                  buttonText="join"
-                  buttonClass="joinBtn"
-                  handleClick={() => handleShowJoinGame(game)}
-                />
-              ))
+              data?.gameByDate?.map((game) => {
+                const userJoined = game.players.some(
+                  (player) => player._id === user._id
+                );
+                return (
+                  <Game
+                    key={game._id}
+                    game={game}
+                    buttonText={userJoined ? "Withdraw" : "join"}
+                    buttonClass="joinBtn"
+                    handleClick={() => handleShowJoinGame(game)}
+                  />
+                );
+              })
             )}
           </div>
         </section>

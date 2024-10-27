@@ -3,18 +3,19 @@ import "./styles/nav.css";
 import logo from "../assets/images/logo.png";
 import logo1 from "../assets/images/logo1.png";
 // import { Link, useLocation } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
+// import { useQuery } from "@apollo/client";
+// import { GET_ME } from "../utils/queries";
+import { useUser } from "../context/UserContext";
 
 import Auth from "../utils/auth";
 
 function Nav() {
   const activePage = useLocation().pathname;
 
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, user } = useUser();
 
-  const username = data?.me.username;
-  const avatar = data?.me?.avatar;
+  const username = user?.username;
+  const avatar = user?.avatar;
 
   const logout = (e) => {
     e.preventDefault();

@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from "./utils/auth.js";
 import "./styles/App.css";
+import { UserProvider } from "./context/UserContext.jsx";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -40,8 +41,6 @@ function App() {
   // this use when signup to navigate user to updateProfile
   useEffect(() => {
     const isNewUser = localStorage.getItem("isNewUser"); // get isNewUser that we set to ture when we signup to
-    console.log("user is loggedin I am in effect");
-    console.log(isNewUser);
     if (Auth.loggedIn() && !hasNavigatedRef.current) {
       if (isNewUser === "true") {
         navigate("/updateProfile"); // navigate to updateProfile
@@ -56,8 +55,10 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <Nav />
-        <Outlet />
+        <UserProvider>
+          <Nav />
+          <Outlet />
+        </UserProvider>
       </ApolloProvider>
     </>
   );
