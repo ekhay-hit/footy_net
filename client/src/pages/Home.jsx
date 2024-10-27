@@ -14,6 +14,10 @@ function Home() {
 
   //used to show the dialog box for showing the game info and join or add friend to join
   const [selectedGame, setSelectedGame] = useState(null);
+  // this to find out if the current loggedin user joined the selectedGame so update the label of the button to withdraw instead of join
+  const isJoined = selectedGame?.players.some(
+    (player) => player._id === user._id
+  );
   // use for storing the game that user clicked to join and passing it to dialog t show the game info
   // get the today default date
   const today = new Date();
@@ -99,6 +103,7 @@ function Home() {
             {selectedGame && (
               <section className="join-game">
                 <JoinGame
+                  isJoined={isJoined}
                   selectedGame={selectedGame}
                   handleCancel={() => handleCancel()}
                   handleJoinGame={handleJoinGame}
