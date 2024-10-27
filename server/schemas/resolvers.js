@@ -323,6 +323,33 @@ const resolvers = {
         throw new Error("Server: failed to join the game");
       }
     },
+
+    // mutation to withdraw from games
+    withdrawGames: async (_, { gameId }, { user }) => {
+      if (!user) {
+        throw new Error("not authenticated");
+      }
+      try {
+        // find the game
+        const game = await Game.findById(gameId).populate("field");
+        if (!game) {
+          throw new Error("game not found");
+        }
+
+        game.players.filter(
+          (player) => player._id.toString() !== user._id.toString()
+        );
+
+        await game.save();
+
+        const updatedGame = await Game.findById(gameId)
+          .populate("field")
+          .populate("players");
+        return updatedGame;
+      } catch (error) {
+        throw new Error("Server: failed to join the game");
+      }
+    },
   },
 };
 
