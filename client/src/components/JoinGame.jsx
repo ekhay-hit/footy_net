@@ -4,7 +4,7 @@ import("../components/styles/joinGame.css");
 function JoinGame({ selectedGame, handleCancel, handleJoinGame, isJoined }) {
   const [count, setCount] = useState(0);
   return (
-    <div className="row border border-dark rounded  col-lg-3 col-md-10 ">
+    <div className="row ms-1 border border-dark bg-white rounded  col-lg-12 col-md-10 ">
       <header className="col-12 p-2 bg-success">
         <h3>Game</h3>
       </header>
