@@ -2,7 +2,7 @@ import "./styles/home.css";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { GAME_BY_DATE } from "../utils/queries";
-import { JOIN_GAMES } from "../utils/mutations.js";
+import { JOIN_GAMES, WITHDRAWFROM_GAMES } from "../utils/mutations.js";
 import Game from "../components/Game.jsx";
 import JoinGame from "../components/JoinGame.jsx";
 
@@ -34,6 +34,9 @@ function Home() {
   const [joinGames, { error }] = useMutation(JOIN_GAMES, {
     refetchQueries: [{ query: GAME_BY_DATE }],
   });
+  const [withdrawFromGames] = useMutation(WITHDRAWFROM_GAMES, {
+    refetchQueries: [{ query: GAME_BY_DATE }],
+  });
   // get the date from the form change the state
   const handleDateChange = (e) => {
     setGameDate(e.target.value);
@@ -55,12 +58,18 @@ function Home() {
   const handleJoinGame = async (game, count) => {
     const gameId = game?._id;
     const isJoined = game?.players.some((player) => player?._id === user?._id);
+    console.log(isJoined);
     if (isJoined) {
-      console.log("withdraw user");
-    } else {
+      console.log("I am in joined");
       try {
-        console.log(count);
-        console.log(gameId);
+        await withdrawFromGames({ variables: { gameId } });
+        setSelectedGame(null);
+      } catch (error) {
+        console.log("Failed to withdraw from the game");
+      }
+    } else if (!isJoined) {
+      console.log("I am not joined");
+      try {
         await joinGames({ variables: { gameId, count } });
         setSelectedGame(null);
       } catch (error) {

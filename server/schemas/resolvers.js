@@ -325,7 +325,7 @@ const resolvers = {
     },
 
     // mutation to withdraw from games
-    withdrawGames: async (_, { gameId }, { user }) => {
+    withdrawFromGames: async (_, { gameId }, { user }) => {
       if (!user) {
         throw new Error("not authenticated");
       }
@@ -336,7 +336,7 @@ const resolvers = {
           throw new Error("game not found");
         }
 
-        game.players.filter(
+        game.players = game.players.filter(
           (player) => player._id.toString() !== user._id.toString()
         );
 

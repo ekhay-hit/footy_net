@@ -67,6 +67,7 @@ removeField(fieldId:ID!): MutationResponse
 removeGame(gameId:ID!): MutationResponse
 
 joinGames(gameId:ID!, count:Int!):Game
+withdrawFromGames(gameId:ID!):Game
 
 updateUser(avatar:String!):Auth
 
