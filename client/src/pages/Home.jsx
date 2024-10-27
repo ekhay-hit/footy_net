@@ -52,14 +52,20 @@ function Home() {
   // handle join the game
 
   // handle join the game
-  const handleJoinGame = async (gameId, count) => {
-    try {
-      console.log(count);
-      console.log(gameId);
-      await joinGames({ variables: { gameId, count } });
-      setSelectedGame(null);
-    } catch (error) {
-      console.log("Failed to join the game");
+  const handleJoinGame = async (game, count) => {
+    const gameId = game?._id;
+    const isJoined = game?.players.some((player) => player?._id === user?._id);
+    if (isJoined) {
+      console.log("withdraw user");
+    } else {
+      try {
+        console.log(count);
+        console.log(gameId);
+        await joinGames({ variables: { gameId, count } });
+        setSelectedGame(null);
+      } catch (error) {
+        console.log("Failed to join the game");
+      }
     }
   };
   return (
@@ -94,8 +100,8 @@ function Home() {
               <p>... Loading the games</p>
             ) : (
               data?.gameByDate?.map((game) => {
-                const userJoined = game.players.some(
-                  (player) => player._id === user._id
+                const userJoined = game?.players.some(
+                  (player) => player?._id === user?._id
                 );
                 return (
                   <Game

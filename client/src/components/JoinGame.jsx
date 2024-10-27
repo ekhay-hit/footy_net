@@ -48,7 +48,7 @@ function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
             CANCEL
           </button>
           <button
-            onClick={() => handleJoinGame(selectedGame._id, count)}
+            onClick={() => handleJoinGame(selectedGame, count)}
             className=" btn my-2 btn-join"
           >
             JOIN
