@@ -41,11 +41,12 @@
 }
 
 .join-game {
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  width: 100%;
+  width: 25%;
   left: 38%;
-  background-color: white;
+  bottom: 10%;
+  /* background-color: rgb(247, 245, 245); */
 }
 
 @media screen and (max-width: 1400px) {
@@ -69,5 +70,6 @@
   .join-game {
     width: 100%;
     left: 0%;
+    z-index: 5;
   }
 }
