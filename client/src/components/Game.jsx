@@ -3,6 +3,7 @@ import Button from "../components/Button.jsx";
 import("../components/styles/game.css");
 
 function Game({ game, buttonText, buttonClass, handleClick }) {
+  // check if the user join to render the appropriate button
   return (
     <div className="card">
       <img src={game.field.image} alt="field image" />
@@ -18,6 +19,7 @@ function Game({ game, buttonText, buttonClass, handleClick }) {
         </span>
         <span className="price">${game.price}</span>
       </div>
+
       <Button className={buttonClass} onClick={handleClick}>
         {buttonText}
       </Button>
