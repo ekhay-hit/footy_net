@@ -1,7 +1,7 @@
 import { useState } from "react";
 /* eslint-disable react/prop-types */
 import("../components/styles/joinGame.css");
-function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
+function JoinGame({ selectedGame, handleCancel, handleJoinGame, isJoined }) {
   const [count, setCount] = useState(0);
   return (
     <div className="row border border-dark rounded  col-lg-3 col-md-10 ">
@@ -51,7 +51,7 @@ function JoinGame({ selectedGame, handleCancel, handleJoinGame }) {
             onClick={() => handleJoinGame(selectedGame, count)}
             className=" btn my-2 btn-join"
           >
-            JOIN
+            {isJoined ? "WITHDRAW" : "JOIN"}
           </button>
         </div>
       </div>
